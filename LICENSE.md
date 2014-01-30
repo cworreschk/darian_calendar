@@ -139,7 +139,8 @@ Any litigation arising between Parties, other than the European Commission, and 
 
 This Licence shall be governed by the law of the European Union country where the Licensor resides or has his registered office.
 
-This licence shall be governed by the Belgian law if:
+This Licence shall be governed by the Belgian law if:
+
 - a litigation arises between the European Commission, as a Licensor, and any Licensee;
 - the Licensor, other than the European Commission, has no residence or registered office inside a European Union country.
 
@@ -147,6 +148,7 @@ This licence shall be governed by the Belgian law if:
 ## Appendix
 
 "Compatible Licences" according to article 5 EUPL are:
+
 - _GNU General Public License (GNU GPL) v. 2 - Open Software License (OSL) v. 2.1, v. 3.0_
 - _Common Public License v. 1.0_
 - _Eclipse Public License v. 1.0_
