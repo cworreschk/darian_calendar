@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'Time converter for the Darian calendar system.'
   s.description = <<-EOF
-    This Ruby gem converts earth time to mars time in 5 variants of the Darian calendar system. It converts mars time in earth time too.
+    This ruby gem converts earth time to mars time in 5 variants of the Darian calendar system. It converts mars time in earth time too.
   EOF
 
   s.files            = `git ls-files`.split("\n")

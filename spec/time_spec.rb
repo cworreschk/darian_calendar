@@ -27,12 +27,12 @@ describe DarianCalendar::Time do
       @mars_time.min.should   == 10
       @mars_time.sec.should   == 2
 
-      @mars_time.total_sols.should == 143466.84030197054
-      @mars_time.season            == 2
-      @mars_time.sol_of_season     == 53
-      @mars_time.month_of_season   == 1
-      @mars_time.sol_of_year       == 387
-      @mars_time.week_sol          == 5
+      @mars_time.total_sols.should      == 143466.84030197054
+      @mars_time.season.should          == 2
+      @mars_time.sol_of_season.should   == 53
+      @mars_time.month_of_season.should == 1
+      @mars_time.sol_of_year.should     == 387
+      @mars_time.week_sol.should        == 5
     end
   end
 
