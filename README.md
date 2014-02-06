@@ -1,4 +1,4 @@
-# Darian Calendar Converter
+# Darian Calendar
 
 [![Build Status](https://travis-ci.org/marsec/darian_calendar.png)](https://travis-ci.org/marsec/darian_calendar)
 
