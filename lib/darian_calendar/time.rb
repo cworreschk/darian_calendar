@@ -24,7 +24,7 @@ module DarianCalendar
     attr_reader :sec
 
     attr_reader :month_name
-    attr_reader :sol_name
+    attr_reader :week_sol_name
 
     attr_reader :total_sols
     attr_reader :week_sol
@@ -104,6 +104,10 @@ module DarianCalendar
       ::Time.at(earth_seconds)
     end
 
+    def to_s
+      sprintf('%d-%02d-%02d %02d:%02d:%02d', @year, @month, @sol, @hour, @min, @sec)
+    end
+
     def initialize(sols=nil, type=CalendarTypes::MARTIANA)
       @calendar_type = type.to_s.capitalize
       @total_sols = sols.to_f != 0 ? sols.to_f : self.sols_from_earth_time(::Time.now)
@@ -162,7 +166,7 @@ module DarianCalendar
       @sol   = doI - (((@month - 1) * 28) - @season) + 1 # 1-28
       @week_sol = ((@sol - 1) % 7) + 1 # 1-7
 
-      @sol_name = case type
+      @week_sol_name = case type
         when CalendarTypes::MARTIANA, CalendarTypes::HENSEL then SOL_MARTIANA[@week_sol]
         when CalendarTypes::DEFROST then SOL_DEFROST[@week_sol]
         when CalendarTypes::AREOSYNCHRONOUS then SOL_AREOSYNCHRONOUS[@week_sol]
