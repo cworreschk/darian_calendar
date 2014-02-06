@@ -84,7 +84,7 @@ Unit tests are provided for all of Darian Calendar's methods:
 
 ```bash
 # From anywhere in the project directory:
-bundle exec rake spec
+bundle exec rspec
 ```
 
 ## License
