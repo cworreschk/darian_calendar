@@ -79,9 +79,14 @@ DarianCalendar::CalendarTypes::AQUA
 ```
 
 ## Testing
+
 Unit tests are provided for all of Darian Calendar's methods:
 
 ```bash
 # From anywhere in the project directory:
 bundle exec rake spec
 ```
+
+## License
+
+This Darian Calendar Ruby Gem is released under the [European Union Public Licence V. 1.1](https://joinup.ec.europa.eu/software/page/eupl/licence-eupl).
