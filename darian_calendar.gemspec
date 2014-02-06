@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name     = 'darian_calendar'
-  s.version  = '0.0.1'
-  s.date     = '2014-01-30'
+  s.version  = '0.1.0'
+  s.date     = '2014-02-06'
   s.platform = Gem::Platform::RUBY
   s.summary = 'Time converter for the Darian calendar system.'
   s.description = <<-EOF
-    This Ruby library converts earth time to mars time in 5 variants of the Darian calendar system. It converts mars time in earth time too.
+    This Ruby gem converts earth time to mars time in 5 variants of the Darian calendar system. It converts mars time in earth time too.
   EOF
 
   s.files            = `git ls-files`.split("\n")
