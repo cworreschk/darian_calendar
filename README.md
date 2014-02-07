@@ -5,16 +5,9 @@
 _The [Darian calendar] is a proposed system of time-keeping designed to serve the needs of any possible future human settlers on the planet Mars.
 It was created by aerospace engineer and political scientist Thomas Gangale in 1985 and named by him after his son Darius._ ([Wikipedia])
 
-This Ruby library converts earth time to mars time and back again. You can choose between 5 variants of the Darian calendar system; Martiana, Defrost, Areosynchronous, Hensel and Aqua.
+This Ruby library converts earth time to mars time and back again. You can choose between 5 variants of the Darian calendar system; _Martiana_, _Defrost_, _Areosynchronous_, _Hensel_ and _Aqua_.
 
 It's based on the [JavaScript Converter] by Thomas Gangale.
-
-####Calendar Variants:
-- Martiana __(Default)__
-- Defrost
-- Areosynchronous
-- Hensel
-- Aqua
 
 [Wikipedia]: http://en.wikipedia.org/wiki/Darian_calendar
 [Darian calendar]: http://en.wikipedia.org/wiki/Darian_calendar
