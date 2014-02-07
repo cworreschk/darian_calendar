@@ -6,3 +6,4 @@ doc
 .idea/*
 *.sh
 *.gem
+Gemfile.lock
