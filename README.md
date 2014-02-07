@@ -15,8 +15,14 @@ It's based on the [JavaScript Converter] by Thomas Gangale.
 
 ## Installation
 
+In Bundler:
 ```ruby
-gem 'darian_calendar', :git => 'git://github.com/marsec/darian_calendar.git'
+gem "darian_calendar"
+```
+
+Otherwise:
+```bash
+[sudo|rvm] gem install darian_calendar
 ```
 
 ## Usage
