@@ -5,7 +5,7 @@
 _The [Darian calendar] is a proposed system of time-keeping designed to serve the needs of any possible future human settlers on the planet Mars.
 It was created by aerospace engineer and political scientist Thomas Gangale in 1985 and named by him after his son Darius._ ([Wikipedia])
 
-This ruby gem converts earth time to mars time in 5 variants of the Darian calendar system. With the method ``to_earth`` you can convert mars time back to earth time.
+This Ruby library converts earth time to mars time and back again. You can choose between 5 variants of the Darian calendar system; Martiana, Defrost, Areosynchronous, Hensel and Aqua.
 
 It's based on the [JavaScript Converter] by Thomas Gangale.
 
@@ -91,4 +91,4 @@ bundle exec rspec
 
 ## License
 
-This Darian Calendar Ruby Gem is released under the [European Union Public Licence V. 1.1](https://joinup.ec.europa.eu/software/page/eupl/licence-eupl).
+This Darian Calendar Ruby Gem is released under the [European Union Public Licence V. 1.1](http://opensource.org/licenses/EUPL-1.1).
