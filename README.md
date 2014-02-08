@@ -89,7 +89,7 @@ bundle exec rspec
 ```
 
 ## Copyright
-- _darian_calendar_ is Copyright © 2014 Christian Worreschk, MarSec.
+- _The Darian Calendar Ruby Gem_ is Copyright © 2014 Christian Worreschk, MarSec.
 - _The Darian System_ is Copyright © 1986-2005 by Thomas Gangale
 
 ## License
