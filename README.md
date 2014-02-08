@@ -7,7 +7,7 @@ It was created by aerospace engineer and political scientist Thomas Gangale in 1
 
 This Ruby library converts earth time to mars time and back again. You can choose between 5 variants of the Darian calendar system; _Martiana_, _Defrost_, _Areosynchronous_, _Hensel_ and _Aqua_.
 
-It's based on the [JavaScript Converter] by Thomas Gangale.
+It's based on the [JavaScript Converter] which was developed by Alan Hensel and Thomas Gangale.
 
 [Wikipedia]: http://en.wikipedia.org/wiki/Darian_calendar
 [Darian calendar]: http://en.wikipedia.org/wiki/Darian_calendar
@@ -88,6 +88,9 @@ Unit tests are provided for all of Darian Calendar's methods:
 bundle exec rspec
 ```
 
-## License
+## Copyright
+- _darian_calendar_ is Copyright © 2014 Christian Worreschk, MarSec.
+- _The Darian System_ is Copyright © 1986-2005 by Thomas Gangale
 
+## License
 This Darian Calendar Ruby Gem is released under the [European Union Public Licence V. 1.1](http://opensource.org/licenses/EUPL-1.1).

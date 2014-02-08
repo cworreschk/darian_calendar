@@ -1,5 +1,10 @@
 source "https://rubygems.org"
 
+group :development do
+  gem 'yard'
+  gem 'redcarpet'
+end
+
 group :development, :test do
   gem 'rake'
 end

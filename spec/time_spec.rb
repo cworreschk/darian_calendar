@@ -78,7 +78,7 @@ describe DarianCalendar::Time do
     end
 
     describe '#sols_in_year' do
-      it 'returns the count of sols in a martian year' do
+      it 'returns the number of sols in a martian year' do
         leap_mars_time  = DarianCalendar::Time.from_earth(Time.utc(2013, 10, 15, 16, 50, 0))
         leap_mars_time.sols_in_year.should == 669
         @mars_time.sols_in_year.should     == 668
