@@ -47,6 +47,13 @@ module DarianCalendar
       DarianCalendar::Time.now(type)
     end
 
+    # Returns the current mars time. Shortcut for 'DarianCalendar::Time.now'
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    # @return [DarianCalendar::Time] current mars time
+    def today(type=CalendarTypes::MARTIANA)
+      DarianCalendar::Date.today(type)
+    end
+
   end
 
 end
