@@ -36,8 +36,6 @@ module DarianCalendar
 
     protected
 
-    include DarianCalendar::Constants
-
     def set_attributes(total_sols, type)
       @calendar_type = type.to_s.capitalize
       @total_sols    = total_sols
@@ -97,18 +95,18 @@ module DarianCalendar
       @week_sol = ((@sol - 1) % 7) + 1 # 1-7
 
       @week_sol_name = case type
-        when CalendarTypes::MARTIANA, CalendarTypes::HENSEL then SOL_NAMES[:martiana][@week_sol-1]
-        when CalendarTypes::DEFROST then SOL_NAMES[:defrost][@week_sol-1]
-        when CalendarTypes::AREOSYNCHRONOUS then SOL_NAMES[:areosynchronous][@week_sol-1]
-        when CalendarTypes::AQUA then @week_sol.to_s
+        when DarianCalendar::CalendarTypes::MARTIANA, CalendarTypes::HENSEL then DarianCalendar::SOL_NAMES[:martiana][@week_sol-1]
+        when DarianCalendar::CalendarTypes::DEFROST then DarianCalendar::SOL_NAMES[:defrost][@week_sol-1]
+        when DarianCalendar::CalendarTypes::AREOSYNCHRONOUS then DarianCalendar::SOL_NAMES[:areosynchronous][@week_sol-1]
+        when DarianCalendar::CalendarTypes::AQUA then @week_sol.to_s
         else ''
       end
 
       @month_name = case type
-        when CalendarTypes::MARTIANA then MONTH_NAMES[:martiana][@month-1]
-        when CalendarTypes::DEFROST, CalendarTypes::AREOSYNCHRONOUS then MONTH_NAMES[:defrost][@month-1]
-        when CalendarTypes::HENSEL then MONTH_NAMES[:hensel][@month-1]
-        when CalendarTypes::AQUA then @month.to_s
+        when DarianCalendar::CalendarTypes::MARTIANA then DarianCalendar::MONTH_NAMES[:martiana][@month-1]
+        when DarianCalendar::CalendarTypes::DEFROST, DarianCalendar::CalendarTypes::AREOSYNCHRONOUS then DarianCalendar::MONTH_NAMES[:defrost][@month-1]
+        when DarianCalendar::CalendarTypes::HENSEL then DarianCalendar::MONTH_NAMES[:hensel][@month-1]
+        when DarianCalendar::CalendarTypes::AQUA then @month.to_s
         else ''
       end
     end
