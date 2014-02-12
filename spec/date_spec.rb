@@ -37,7 +37,7 @@ describe DarianCalendar::Date do
   describe 'class methods' do
 
     describe '.from_earth' do
-      it 'parses earth date and converts it to mars date' do
+      it 'converts an earth date to a mars date' do
         DarianCalendar::Date.from_earth(@earth_date).should == @mars_date
       end
     end
@@ -50,7 +50,7 @@ describe DarianCalendar::Date do
 
     describe '.today' do
       it 'returns current mars date' do
-        Date.should_receive(:today).and_return(@earth_date)
+        ::Date.should_receive(:today).and_return(@earth_date)
         DarianCalendar::Date.today.should == DarianCalendar::Date.from_earth(@earth_date)
       end
     end
@@ -109,13 +109,13 @@ describe DarianCalendar::Date do
     end
 
     describe '#to_json' do
-      it 'converts mars date to string' do
+      it 'converts mars date to a json string' do
         @mars_date.to_json.should == @mars_date_json
       end
     end
 
     describe '#as_json' do
-      it 'converts mars date to string' do
+      it 'converts mars date to json' do
         @mars_date.as_json.should == JSON::parse(@mars_date_json)
       end
     end

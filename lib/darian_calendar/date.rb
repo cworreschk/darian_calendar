@@ -127,7 +127,7 @@ module DarianCalendar
     end
 
     # Converts a number of martian sols to mars date.
-    # @param sols optional [Numeric] Number of martian sols. Default is the number of sols of the the current date.
+    # @param sols optional [Float] Number of martian sols. Default is the number of sols of the the current date.
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
     # @return [DarianCalendar::Date] mars date
     def initialize(sols=nil, type=CalendarTypes::MARTIANA)

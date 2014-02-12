@@ -5,8 +5,10 @@ require 'spec_helper'
 describe DarianCalendar::Time do
 
   before do
+    @earth_date = Date.new(2012, 10, 15)
     @earth_time = Time.utc(2012, 10, 15, 16, 50, 0)
     @mars_time  = DarianCalendar::Time.from_earth(@earth_time)
+    @mars_time_json = '{"calendar_type":"Martiana","total_sols":143466.84030197054,"year":214,"season":2,"sol_of_season":53,"month_of_season":1,"sol_of_year":387,"month":14,"sol":26,"week_sol":5,"week_sol_name":"Sol Jovis","month_name":"Mithuna","hour":20,"min":10,"sec":2}'
   end
 
   describe 'attributes' do
@@ -38,10 +40,9 @@ describe DarianCalendar::Time do
 
   describe 'class methods' do
 
-    describe '.total_sols' do
-      it 'returns total sols from earth time' do
-        sols = DarianCalendar::Time.sols_from_earth_time(@earth_time)
-        sols.should == @mars_time.total_sols
+    describe '.from_earth' do
+      it 'converts an earth time to a mars time' do
+        DarianCalendar::Date.from_earth(@earth_time).should == @mars_time
       end
     end
 
@@ -51,10 +52,23 @@ describe DarianCalendar::Time do
       end
     end
 
+    describe '.today' do
+      it 'returns current mars date' do
+        ::Date.should_receive(:today).and_return(@earth_date)
+        DarianCalendar::Time.today.should == DarianCalendar::Date.from_earth(@earth_date)
+      end
+    end
+
     describe '.now' do
       it 'returns current mars time' do
-        Time.should_receive(:now).and_return(@earth_time)
+        ::Time.should_receive(:now).and_return(@earth_time)
         DarianCalendar.now.should == DarianCalendar::Time.from_earth(@earth_time)
+      end
+    end
+
+    describe '.from_json' do
+      it 'parses a json string and creates a mars date' do
+        DarianCalendar::Time.from_json(@mars_time_json).should == @mars_time
       end
     end
 
@@ -102,6 +116,18 @@ describe DarianCalendar::Time do
     describe '#to_s' do
       it 'converts mars time to string' do
         @mars_time.to_s.should == '214-14-26 20:10:02'
+      end
+    end
+
+    describe '#to_json' do
+      it 'converts mars time to a json string' do
+        @mars_time.to_json.should == @mars_time_json
+      end
+    end
+
+    describe '#as_json' do
+      it 'converts mars time to json' do
+        @mars_time.as_json.should == JSON::parse(@mars_time_json)
       end
     end
 
