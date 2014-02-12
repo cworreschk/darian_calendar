@@ -38,6 +38,81 @@ module DarianCalendar
 
     include DarianCalendar::Constants
 
+    def set_attributes(total_sols, type)
+      @calendar_type = type.to_s.capitalize
+      @total_sols    = total_sols
+
+      sD  = (@total_sols / 334296).floor
+      doD = (@total_sols - (sD * 334296)).floor
+
+      sC = 0
+      doC = doD
+      sC = ((doD - 1) / 66859).floor if doD != 0
+      doC -= ((sC * 66859) + 1) if sC != 0
+
+      sX = 0
+      doX = doC
+      if sC != 0 # century that does not begin with leap day
+        sX = ((doC + 1) / 6686).floor
+        doX -= ((sX * 6686) - 1) if sX != 0
+      else
+        sX = (doC / 6686).floor
+        doX -= (sX * 6686) if sX != 0
+      end
+
+      sII = 0
+      doII = doX
+      if (sC != 0) && (sX == 0) # decade that does not begin with leap day
+        sII = (doX / 1337).floor
+        doII -= (sII * 1337) if sII != 0
+      else # 1338, 1337, 1337, 1337 ...
+        sII = ((doX - 1) / 1337) if doX != 0
+        doII -= ((sII * 1337) + 1) if sII != 0
+      end
+
+      sI = 0
+      doI= doII
+      if (sII == 0) && ((sX != 0) || ((sX == 0) && (sC == 0)))
+        sI = (doII / 669).floor
+        doI -= 669 if sI != 0
+      else # 668, 669
+        sI = ((doII + 1) / 669).floor
+        doI -= 668 if sI != 0
+      end
+
+      @year = (500 * sD) + (100 * sC) + (10 * sX) + (2 * sII) + sI
+      @season = case true # 0-3
+        when (doI < 167) then 0
+        when (doI < 334) then 1
+        when (doI < 501) then 2
+        else 3
+      end
+
+      @sol_of_season = doI - 167 * @season # 0-167
+      @month_of_season = (@sol_of_season / 28).floor #  0-5
+      @sol_of_year = doI
+
+      @month = @month_of_season + (6 * @season) + 1 # 1-24
+      @sol   = doI - (((@month - 1) * 28) - @season) + 1 # 1-28
+      @week_sol = ((@sol - 1) % 7) + 1 # 1-7
+
+      @week_sol_name = case type
+        when CalendarTypes::MARTIANA, CalendarTypes::HENSEL then SOL_NAMES[:martiana][@week_sol-1]
+        when CalendarTypes::DEFROST then SOL_NAMES[:defrost][@week_sol-1]
+        when CalendarTypes::AREOSYNCHRONOUS then SOL_NAMES[:areosynchronous][@week_sol-1]
+        when CalendarTypes::AQUA then @week_sol.to_s
+        else ''
+      end
+
+      @month_name = case type
+        when CalendarTypes::MARTIANA then MONTH_NAMES[:martiana][@month-1]
+        when CalendarTypes::DEFROST, CalendarTypes::AREOSYNCHRONOUS then MONTH_NAMES[:defrost][@month-1]
+        when CalendarTypes::HENSEL then MONTH_NAMES[:hensel][@month-1]
+        when CalendarTypes::AQUA then @month.to_s
+        else ''
+      end
+    end
+
     public
 
     # Converts a date object to a mars date object
@@ -131,78 +206,8 @@ module DarianCalendar
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
     # @return [DarianCalendar::Date] mars date
     def initialize(sols=nil, type=CalendarTypes::MARTIANA)
-      @calendar_type = type.to_s.capitalize
-      @total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Date.today)
-
-      sD  = (@total_sols / 334296).floor
-      doD = (@total_sols - (sD * 334296)).floor
-
-      sC = 0
-      doC = doD
-      sC = ((doD - 1) / 66859).floor if doD != 0
-      doC -= ((sC * 66859) + 1) if sC != 0
-
-      sX = 0
-      doX = doC
-      if sC != 0 # century that does not begin with leap day
-        sX = ((doC + 1) / 6686).floor
-        doX -= ((sX * 6686) - 1) if sX != 0
-      else
-        sX = (doC / 6686).floor
-        doX -= (sX * 6686) if sX != 0
-      end
-
-      sII = 0
-      doII = doX
-      if (sC != 0) && (sX == 0) # decade that does not begin with leap day
-        sII = (doX / 1337).floor
-        doII -= (sII * 1337) if sII != 0
-      else # 1338, 1337, 1337, 1337 ...
-        sII = ((doX - 1) / 1337) if doX != 0
-        doII -= ((sII * 1337) + 1) if sII != 0
-      end
-
-      sI = 0
-      doI= doII
-      if (sII == 0) && ((sX != 0) || ((sX == 0) && (sC == 0)))
-        sI = (doII / 669).floor
-        doI -= 669 if sI != 0
-      else # 668, 669
-        sI = ((doII + 1) / 669).floor
-        doI -= 668 if sI != 0
-      end
-
-      @year = (500 * sD) + (100 * sC) + (10 * sX) + (2 * sII) + sI
-      @season = case true # 0-3
-        when (doI < 167) then 0
-        when (doI < 334) then 1
-        when (doI < 501) then 2
-        else 3
-      end
-
-      @sol_of_season = doI - 167 * @season # 0-167
-      @month_of_season = (@sol_of_season / 28).floor #  0-5
-      @sol_of_year = doI
-
-      @month = @month_of_season + (6 * @season) + 1 # 1-24
-      @sol   = doI - (((@month - 1) * 28) - @season) + 1 # 1-28
-      @week_sol = ((@sol - 1) % 7) + 1 # 1-7
-
-      @week_sol_name = case type
-        when CalendarTypes::MARTIANA, CalendarTypes::HENSEL then SOL_NAMES[:martiana][@week_sol-1]
-        when CalendarTypes::DEFROST then SOL_NAMES[:defrost][@week_sol-1]
-        when CalendarTypes::AREOSYNCHRONOUS then SOL_NAMES[:areosynchronous][@week_sol-1]
-        when CalendarTypes::AQUA then @week_sol.to_s
-        else ''
-      end
-
-      @month_name = case type
-        when CalendarTypes::MARTIANA then MONTH_NAMES[:martiana][@month-1]
-        when CalendarTypes::DEFROST, CalendarTypes::AREOSYNCHRONOUS then MONTH_NAMES[:defrost][@month-1]
-        when CalendarTypes::HENSEL then MONTH_NAMES[:hensel][@month-1]
-        when CalendarTypes::AQUA then @month.to_s
-        else ''
-      end
+      total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Date.today)
+      self.set_attributes(total_sols, type)
     end
 
   end
