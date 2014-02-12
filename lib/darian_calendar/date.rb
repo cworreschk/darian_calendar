@@ -2,10 +2,8 @@
 
 module DarianCalendar
 
-
-
-  # Timestamp in the Darian calendar system
-  class Time
+  # The date is a particular day of a Darian calendar year
+  class Date
     include Comparable
 
     # @return [Integer] year
@@ -14,17 +12,11 @@ module DarianCalendar
     attr_reader :month
     # @return [Integer] sol of the month
     attr_reader :sol
-    # @return [Integer] hour of the sol
-    attr_reader :hour
-    # @return [Integer] minute of the hour
-    attr_reader :min
-    # @return [Integer] second of the minute
-    attr_reader :sec
     # @return [String] full month name ("Mithuna")
     attr_reader :month_name
     # @return [String] full weeksol name ("Sol Jovis")
     attr_reader :week_sol_name
-    # @return [Float] number of sols (with hour, minutes and seconds) since the earth date 0-0-0
+    # @return [Integer] number of sols since the earth date 0-0-0
     attr_reader :total_sols
     # @return [String] sol of the week
     attr_reader :week_sol
@@ -42,60 +34,49 @@ module DarianCalendar
     alias :day :sol
     alias :week_day :week_sol
 
-    MARS_TO_EARTH_DAYS = 1.027491251
-    EPOCH_OFFSET = 587744.77817
-    SECONDS_A_DAY = 86400.0
-    ROUND_UP_SECOND = 1/SECONDS_A_DAY;
-    E_DAYS_TIL_UNIX = 719527.0
+    protected
 
-    SOL_NAMES = {
-      martiana: ['Sol Solis', 'Sol Lunae', 'Sol Martis', 'Sol Mercurii', 'Sol Jovis', 'Sol Veneris', 'Sol Saturni'],
-      defrost: ['Axatisol', 'Benasol', 'Ciposol', 'Domesol', 'Erjasol', 'Fulisol', 'Gavisol'],
-      areosynchronous: ['Heliosol', 'Phobosol', 'Deimosol', 'Terrasol', 'Venusol', 'Mercurisol', 'Jovisol']
-    }
-    MONTH_NAMES = {
-      martiana: ['Sagittarius', 'Dhanus', 'Capricornus', 'Makara', 'Aquarius', 'Kumbha', 'Pisces', 'Mina', 'Aries', 'Mesha', 'Taurus', 'Rishabha', 'Gemini', 'Mithuna', 'Cancer', 'Karka', 'Leo', 'Simha', 'Virgo', 'Kanya', 'Libra', 'Tula', 'Scorpius', 'Vrishika'],
-      defrost: ['Adir', 'Bora', 'Coan', 'Deti', 'Edal', 'Flo', 'Geor', 'Heliba', 'Idanon', 'Jowani', 'Kireal', 'Larno', 'Medior', 'Neturima', 'Ozulikan', 'Pasurabi', 'Rudiakel', 'Safundo', 'Tiunor', 'Ulasja', 'Vadeun', 'Wakumi', 'Xetual', 'Zungo'],
-      hensel: ['Vernalis', 'Duvernalis', 'Trivernalis', 'Quadrivernalis', 'Pentavernalis', 'Hexavernalis', 'Aestas', 'Duestas', 'Triestas', 'Quadrestas', 'Pentestas', 'Hexestas', 'Autumnus', 'Duautumn', 'Triautumn', 'Quadrautumn', 'Pentautumn', 'Hexautumn', 'Unember', 'Duember', 'Triember', 'Quadrember', 'Pentember', 'Hexember']
-    }
+    include DarianCalendar::Constants
 
-    # Calculates the total number of martian sols for this earth time
-    # @param earth_time [Time] Earth time
-    # @return [Integer] number of sols
-    def self.sols_from_earth_time(earth_time)
-      days = (earth_time.to_f / SECONDS_A_DAY) + E_DAYS_TIL_UNIX
-      sols = (days - EPOCH_OFFSET) / MARS_TO_EARTH_DAYS
-      return sols
+    public
+
+    # Converts a date object to a mars date object
+    # @param earth_date [::Date] Earth date
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    # @return [DarianCalendar::Date] mars date
+    def self.from_earth(earth_date, type=CalendarTypes::MARTIANA)
+      self.new(DarianCalendar.sols_from_earth(earth_date), type)
     end
 
-    # Converts a time object to a mars time object
-    # @param earth_time [Time] Earth time
+    # Parses the given representation of a date, and converts it to a mars date
+    # @param string [String] String with a date
     # @param type [DarianCalendar::CalendarTypes] Calendar type
-    # @return [DarianCalendar::Time] mars time
-    def self.from_earth(earth_time, type=CalendarTypes::MARTIANA)
-      self.new(self.sols_from_earth_time(earth_time), type)
-    end
-
-    # Parses the given representation of date and time, and converts it to mars time
-    # @param string [String] String with date and time
-    # @param type [DarianCalendar::CalendarTypes] Calendar type
-    # @return [DarianCalendar::Time] mars time
+    # @return [DarianCalendar::Date] mars date
     def self.parse_earth(string, type=CalendarTypes::MARTIANA)
-      self.from_earth(::Time.parse(string), type)
+      self.from_earth(::Date.parse(string), type)
     end
 
-    # Returns the current mars time.
+    # Creates a date object denoting the present mars day.
     # @param type [DarianCalendar::CalendarTypes] Calendar type
-    # @return [DarianCalendar::Time] current mars time
-    def self.now(type=CalendarTypes::MARTIANA)
-      self.from_earth(::Time.now, type)
+    # @return [DarianCalendar::Date] current mars date
+    def self.today(type=CalendarTypes::MARTIANA)
+      self.from_earth(::Date.today, type)
     end
 
-    # Compares two times and returns -1, zero, 1 or nil. The other should be a mars time object.
-    # @param another [DarianCalendar::Time]
+    # Sets the model attributes from a JSON string. Returns self.
+    # @param json [String] JSON string
+    # @return [DarianCalendar::Date] mars date
+    def self.from_json(string)
+      json = JSON::parse(string)
+      type =  json['calendar_type'].to_s.downcase.to_sym rescue nil
+      self.new(json['total_sols'].to_f, type)
+    end
+
+    # Compares two dates and returns -1, zero, 1 or nil. The other should be a mars date object.
+    # @param another [DarianCalendar::Date]
     # @return [Integer] Compare result
     def <=>(another)
-      @total_sols <=> another.total_sols
+      @total_sols.floor <=> another.total_sols.floor
     end
 
     # Return the number of sols in the given year
@@ -114,27 +95,44 @@ module DarianCalendar
       return true
     end
 
-    # Converts the given mars time to earth time
-    # @return [Time] earth time
+    # Converts the given mars date to earth date
+    # @return [Date] earth date
     def to_earth
       earth_days = (@total_sols * MARS_TO_EARTH_DAYS) + EPOCH_OFFSET + ROUND_UP_SECOND
       earth_seconds = ((earth_days - E_DAYS_TIL_UNIX) * SECONDS_A_DAY) - 1
-      ::Time.at(earth_seconds)
+      ::Time.at(earth_seconds).to_date
     end
 
     # Returns a string in an ISO 8601 format (This method doesn’t use the expanded representations).
-    # @return [String] Time as a string in an ISO 8601 format
+    # @return [String] Date as a string in an ISO 8601 format
     def to_s
-      sprintf('%d-%02d-%02d %02d:%02d:%02d', @year, @month, @sol, @hour, @min, @sec)
+      sprintf('%d-%02d-%02d', @year, @month, @sol)
     end
 
-    # Converts a number of martian sols to mars time.
-    # @param sols optional [Float] Number of martian sols. Default is the number of sols of the the current time.
+    # Returns a JSON string representing the model.
+    # @return Returns a JSON string representing the model.
+    def to_json
+      self.as_json.to_json
+    end
+
+    # Returns a hash representing the model.
+    # @return Returns a hash representing the model.
+    def as_json
+      json = {}
+      self.instance_variables.each do |attr|
+        field = attr.to_s.gsub('@', '')
+        json[field] = self.send(field)
+      end
+      return json
+    end
+
+    # Converts a number of martian sols to mars date.
+    # @param sols optional [Numeric] Number of martian sols. Default is the number of sols of the the current date.
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
-    # @return [DarianCalendar::Time] mars time
+    # @return [DarianCalendar::Date] mars date
     def initialize(sols=nil, type=CalendarTypes::MARTIANA)
       @calendar_type = type.to_s.capitalize
-      @total_sols = sols.to_f != 0 ? sols.to_f : self.sols_from_earth_time(::Time.now)
+      @total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Date.today)
 
       sD  = (@total_sols / 334296).floor
       doD = (@total_sols - (sD * 334296)).floor
@@ -205,15 +203,8 @@ module DarianCalendar
         when CalendarTypes::AQUA then @month.to_s
         else ''
       end
-
-      partial_sol = @total_sols - @total_sols.floor
-      hour = partial_sol* 24
-      min  = (hour - hour.floor) * 60
-
-      @hour = hour.floor
-      @min  = min.floor
-      @sec  = ((min - min.floor) * 60).floor
     end
 
   end
+
 end
