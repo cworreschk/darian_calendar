@@ -2,78 +2,22 @@
 
 module DarianCalendar
 
-
-
   # Timestamp in the Darian calendar system
-  class Time
-    include Comparable
+  class Time < DarianCalendar::Date
 
-    # @return [Integer] year
-    attr_reader :year
-    # @return [Integer] month of the year
-    attr_reader :month
-    # @return [Integer] sol of the month
-    attr_reader :sol
     # @return [Integer] hour of the sol
     attr_reader :hour
     # @return [Integer] minute of the hour
     attr_reader :min
     # @return [Integer] second of the minute
     attr_reader :sec
-    # @return [String] full month name ("Mithuna")
-    attr_reader :month_name
-    # @return [String] full weeksol name ("Sol Jovis")
-    attr_reader :week_sol_name
-    # @return [Float] number of sols (with hour, minutes and seconds) since the earth date 0-0-0
-    attr_reader :total_sols
-    # @return [String] sol of the week
-    attr_reader :week_sol
-    # @return [Integer] season of the year
-    attr_reader :season
-    # @return [Integer] sol of the season
-    attr_reader :sol_of_season
-    # @return [Integer] month of the season
-    attr_reader :month_of_season
-    # @return [Integer] sol of the year
-    attr_reader :sol_of_year
-    # @return [String] name of the calendar type ("Martiana")
-    attr_reader :calendar_type
-
-    alias :day :sol
-    alias :week_day :week_sol
-
-    MARS_TO_EARTH_DAYS = 1.027491251
-    EPOCH_OFFSET = 587744.77817
-    SECONDS_A_DAY = 86400.0
-    ROUND_UP_SECOND = 1/SECONDS_A_DAY;
-    E_DAYS_TIL_UNIX = 719527.0
-
-    SOL_NAMES = {
-      martiana: ['Sol Solis', 'Sol Lunae', 'Sol Martis', 'Sol Mercurii', 'Sol Jovis', 'Sol Veneris', 'Sol Saturni'],
-      defrost: ['Axatisol', 'Benasol', 'Ciposol', 'Domesol', 'Erjasol', 'Fulisol', 'Gavisol'],
-      areosynchronous: ['Heliosol', 'Phobosol', 'Deimosol', 'Terrasol', 'Venusol', 'Mercurisol', 'Jovisol']
-    }
-    MONTH_NAMES = {
-      martiana: ['Sagittarius', 'Dhanus', 'Capricornus', 'Makara', 'Aquarius', 'Kumbha', 'Pisces', 'Mina', 'Aries', 'Mesha', 'Taurus', 'Rishabha', 'Gemini', 'Mithuna', 'Cancer', 'Karka', 'Leo', 'Simha', 'Virgo', 'Kanya', 'Libra', 'Tula', 'Scorpius', 'Vrishika'],
-      defrost: ['Adir', 'Bora', 'Coan', 'Deti', 'Edal', 'Flo', 'Geor', 'Heliba', 'Idanon', 'Jowani', 'Kireal', 'Larno', 'Medior', 'Neturima', 'Ozulikan', 'Pasurabi', 'Rudiakel', 'Safundo', 'Tiunor', 'Ulasja', 'Vadeun', 'Wakumi', 'Xetual', 'Zungo'],
-      hensel: ['Vernalis', 'Duvernalis', 'Trivernalis', 'Quadrivernalis', 'Pentavernalis', 'Hexavernalis', 'Aestas', 'Duestas', 'Triestas', 'Quadrestas', 'Pentestas', 'Hexestas', 'Autumnus', 'Duautumn', 'Triautumn', 'Quadrautumn', 'Pentautumn', 'Hexautumn', 'Unember', 'Duember', 'Triember', 'Quadrember', 'Pentember', 'Hexember']
-    }
-
-    # Calculates the total number of martian sols for this earth time
-    # @param earth_time [Time] Earth time
-    # @return [Integer] number of sols
-    def self.sols_from_earth_time(earth_time)
-      days = (earth_time.to_f / SECONDS_A_DAY) + E_DAYS_TIL_UNIX
-      sols = (days - EPOCH_OFFSET) / MARS_TO_EARTH_DAYS
-      return sols
-    end
 
     # Converts a time object to a mars time object
     # @param earth_time [Time] Earth time
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] mars time
     def self.from_earth(earth_time, type=CalendarTypes::MARTIANA)
-      self.new(self.sols_from_earth_time(earth_time), type)
+      self.new(DarianCalendar.sols_from_earth(earth_time), type)
     end
 
     # Parses the given representation of date and time, and converts it to mars time
@@ -96,22 +40,6 @@ module DarianCalendar
     # @return [Integer] Compare result
     def <=>(another)
       @total_sols <=> another.total_sols
-    end
-
-    # Return the number of sols in the given year
-    # @return [Integer] Number of sols in the given year
-    def sols_in_year
-      self.leap? ? 669 : 668
-    end
-
-    # Returns true if the given year is a leap year
-    # @return [Boolean] true if the given year is a leap year
-    def leap?
-      return true if (@year % 500) == 0
-      return false if (@year % 100) == 0
-      return true if (@year %  10) == 0
-      return false if (@year % 2) == 0
-      return true
     end
 
     # Converts the given mars time to earth time
