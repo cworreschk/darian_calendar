@@ -5,8 +5,9 @@ require 'spec_helper'
 describe DarianCalendar::Time do
 
   before do
-    @earth_date = Date.new(2012, 10, 15)
-    @earth_time = Time.utc(2012, 10, 15, 16, 50, 0)
+    @earth_date = ::Date.new(2012, 10, 15)
+    @earth_time = ::Time.utc(2012, 10, 15, 16, 50, 0)
+    @mars_date  = DarianCalendar::Date.from_earth(@earth_date)
     @mars_time  = DarianCalendar::Time.from_earth(@earth_time)
     @mars_time_json = '{"calendar_type":"Martiana","total_sols":143466.84030197054,"year":214,"season":2,"sol_of_season":53,"month_of_season":1,"sol_of_year":387,"month":14,"sol":26,"week_sol":5,"week_sol_name":"Sol Jovis","month_name":"Mithuna","hour":20,"min":10,"sec":2}'
   end
@@ -116,6 +117,12 @@ describe DarianCalendar::Time do
     describe '#to_s' do
       it 'converts mars time to string' do
         @mars_time.to_s.should == '214-14-26 20:10:02'
+      end
+    end
+
+    describe '#to_date' do
+      it 'returns the date of the mars time' do
+        @mars_time.to_date.should == @mars_date
       end
     end
 

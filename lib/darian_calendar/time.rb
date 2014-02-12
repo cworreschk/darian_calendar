@@ -56,6 +56,12 @@ module DarianCalendar
       sprintf('%d-%02d-%02d %02d:%02d:%02d', @year, @month, @sol, @hour, @min, @sec)
     end
 
+    # Returns the date of the given mars time
+    # @return [DarianCalendar::Date] mars date
+    def to_date
+      DarianCalendar::Date.new(self.total_sols)
+    end
+
     # Converts a number of martian sols to mars time.
     # @param sols optional [Float] Number of martian sols. Default is the number of sols of the the current time.
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
