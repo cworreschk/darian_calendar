@@ -62,7 +62,7 @@ module DarianCalendar
     # @return [DarianCalendar::Time] mars time
     def initialize(sols=nil, type=CalendarTypes::MARTIANA)
       @calendar_type = type.to_s.capitalize
-      @total_sols = sols.to_f != 0 ? sols.to_f : self.sols_from_earth_time(::Time.now)
+      @total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Time.now)
 
       sD  = (@total_sols / 334296).floor
       doD = (@total_sols - (sD * 334296)).floor
