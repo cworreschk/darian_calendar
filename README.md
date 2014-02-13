@@ -43,6 +43,9 @@ mars_time = DarianCalendar::Time.from_earth(Time.utc(2012, 10, 15, 16, 50, 0), D
 
 mars_time = DarianCalendar::Time.parse_earth('2012-10-15 16:50:00 UTC')
 mars_time = DarianCalendar::Time.parse_earth('2012-10-15 16:50:00 UTC', DarianCalendar::CalendarTypes::MARTIANA)
+
+mars_date = DarianCalendar::Date.today
+mars_date = DarianCalendar::Time.now.to_date
 ```
 
 ```ruby
