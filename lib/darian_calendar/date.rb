@@ -192,7 +192,7 @@ module DarianCalendar
     # @return Returns a hash representing the model.
     def as_json
       json = {}
-      self.instance_variables.each do |attr|
+      self.instance_variables.sort.each do |attr|
         field = attr.to_s.gsub('@', '')
         json[field] = self.send(field)
       end

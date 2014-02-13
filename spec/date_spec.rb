@@ -7,7 +7,7 @@ describe DarianCalendar::Date do
   before do
     @earth_date = ::Date.new(2012, 10, 15)
     @mars_date  = DarianCalendar::Date.from_earth(@earth_date)
-    @mars_date_json = '{"calendar_type":"Martiana","total_sols":143466.15767923463,"year":214,"season":2,"sol_of_season":53,"month_of_season":1,"sol_of_year":387,"month":14,"sol":26,"week_sol":5,"week_sol_name":"Sol Jovis","month_name":"Mithuna"}'
+    @mars_date_json = '{"calendar_type":"Martiana","month":14,"month_name":"Mithuna","month_of_season":1,"season":2,"sol":26,"sol_of_season":53,"sol_of_year":387,"total_sols":143466.15767923463,"week_sol":5,"week_sol_name":"Sol Jovis","year":214}'
   end
 
   describe 'attributes' do
