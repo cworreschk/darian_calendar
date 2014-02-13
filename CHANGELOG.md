@@ -1,7 +1,8 @@
 ## 1.0
-- Travis-Support for Ruby 1.8.7
 - JSON support
 - Martian date object
+- Bugfixes
+- Optimizations
 
 ## 0.2
 - Documentation with Yard
