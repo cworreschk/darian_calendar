@@ -156,6 +156,12 @@ describe DarianCalendar::Date do
           mars_date.week_sol_name.should == '5'
         end
       end
+      context 'calendar type is ""' do
+        it 'returns ""' do
+          mars_date = DarianCalendar::Date.from_earth(@earth_date, :nothing)
+          mars_date.week_sol_name.should == ''
+        end
+      end
     end
 
     describe '#month_name' do
@@ -192,6 +198,12 @@ describe DarianCalendar::Date do
         it 'returns "14"' do
           mars_date = DarianCalendar::Date.from_earth(@earth_date, DarianCalendar::CalendarTypes::AQUA)
           mars_date.month_name.should == '14'
+        end
+      end
+      context 'calendar type is anything else' do
+        it 'returns ""' do
+          mars_date = DarianCalendar::Date.from_earth(@earth_date, :nothing)
+          mars_date.month_name.should == ''
         end
       end
     end
