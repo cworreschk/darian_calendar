@@ -36,6 +36,9 @@ module DarianCalendar
 
     protected
 
+    # Set all attributes by the number of martian sols and calendar type
+    # @param total_sols [Float] Total number of martian sols
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
     def set_attributes(total_sols, type)
       @calendar_type = type.to_s.capitalize
       @total_sols    = total_sols
@@ -137,7 +140,7 @@ module DarianCalendar
     end
 
     # Sets the model attributes from a JSON string. Returns self.
-    # @param json [String] JSON string
+    # @param string [String] JSON string
     # @return [DarianCalendar::Date] mars date
     def self.from_json(string)
       json = JSON::parse(string)
