@@ -1,6 +1,7 @@
 pkg
 rdoc
 doc
+coverage
 .yardoc
 .ruby-version
 .ruby-gemset
