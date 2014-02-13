@@ -16,7 +16,7 @@ module DarianCalendar
     # @param earth_time [Time] Earth time
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] mars time
-    def self.from_earth(earth_time, type=CalendarTypes::MARTIANA)
+    def self.from_earth(earth_time, type=DarianCalendar::CalendarTypes::MARTIANA)
       self.new(DarianCalendar.sols_from_earth(earth_time), type)
     end
 
@@ -24,14 +24,14 @@ module DarianCalendar
     # @param string [String] String with date and time
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] mars time
-    def self.parse_earth(string, type=CalendarTypes::MARTIANA)
+    def self.parse_earth(string, type=DarianCalendar::CalendarTypes::MARTIANA)
       self.from_earth(::Time.parse(string), type)
     end
 
     # Returns the current mars time.
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] current mars time
-    def self.now(type=CalendarTypes::MARTIANA)
+    def self.now(type=DarianCalendar::CalendarTypes::MARTIANA)
       self.from_earth(::Time.now, type)
     end
 
@@ -45,8 +45,8 @@ module DarianCalendar
     # Converts the given mars time to earth time
     # @return [Time] earth time
     def to_earth
-      earth_days = (@total_sols * MARS_TO_EARTH_DAYS) + EPOCH_OFFSET + ROUND_UP_SECOND
-      earth_seconds = ((earth_days - E_DAYS_TIL_UNIX) * SECONDS_A_DAY) - 1
+      earth_days = (@total_sols * DarianCalendar::MARS_TO_EARTH_DAYS) + DarianCalendar::EPOCH_OFFSET + DarianCalendar::ROUND_UP_SECOND
+      earth_seconds = ((earth_days - DarianCalendar::E_DAYS_TIL_UNIX) * DarianCalendar::SECONDS_A_DAY) - 1
       ::Time.at(earth_seconds)
     end
 
@@ -66,7 +66,7 @@ module DarianCalendar
     # @param sols optional [Float] Number of martian sols. Default is the number of sols of the the current time.
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
     # @return [DarianCalendar::Time] mars time
-    def initialize(sols=nil, type=CalendarTypes::MARTIANA)
+    def initialize(sols=nil, type=DarianCalendar::CalendarTypes::MARTIANA)
       total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Time.now)
 
       self.set_attributes(total_sols, type)

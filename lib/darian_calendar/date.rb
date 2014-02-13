@@ -117,7 +117,7 @@ module DarianCalendar
     # @param earth_date [::Date] Earth date
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Date] mars date
-    def self.from_earth(earth_date, type=CalendarTypes::MARTIANA)
+    def self.from_earth(earth_date, type=DarianCalendar::CalendarTypes::MARTIANA)
       self.new(DarianCalendar.sols_from_earth(earth_date), type)
     end
 
@@ -125,14 +125,14 @@ module DarianCalendar
     # @param string [String] String with a date
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Date] mars date
-    def self.parse_earth(string, type=CalendarTypes::MARTIANA)
+    def self.parse_earth(string, type=DarianCalendar::CalendarTypes::MARTIANA)
       self.from_earth(::Date.parse(string), type)
     end
 
     # Creates a date object denoting the present mars day.
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Date] current mars date
-    def self.today(type=CalendarTypes::MARTIANA)
+    def self.today(type=DarianCalendar::CalendarTypes::MARTIANA)
       self.from_earth(::Date.today, type)
     end
 
@@ -171,8 +171,8 @@ module DarianCalendar
     # Converts the given mars date to earth date
     # @return [Date] earth date
     def to_earth
-      earth_days = (@total_sols * MARS_TO_EARTH_DAYS) + EPOCH_OFFSET + ROUND_UP_SECOND
-      earth_seconds = ((earth_days - E_DAYS_TIL_UNIX) * SECONDS_A_DAY) - 1
+      earth_days = (@total_sols * DarianCalendar::MARS_TO_EARTH_DAYS) + DarianCalendar::EPOCH_OFFSET + DarianCalendar::ROUND_UP_SECOND
+      earth_seconds = ((earth_days - DarianCalendar::E_DAYS_TIL_UNIX) * DarianCalendar::SECONDS_A_DAY) - 1
       ::Time.at(earth_seconds).to_date
     end
 
@@ -203,7 +203,7 @@ module DarianCalendar
     # @param sols optional [Float] Number of martian sols. Default is the number of sols of the the current date.
     # @param type optional [DarianCalendar::CalendarTypes] calendar type.
     # @return [DarianCalendar::Date] mars date
-    def initialize(sols=nil, type=CalendarTypes::MARTIANA)
+    def initialize(sols=nil, type=DarianCalendar::CalendarTypes::MARTIANA)
       total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Date.today)
       self.set_attributes(total_sols, type)
     end
