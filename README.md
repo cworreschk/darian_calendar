@@ -82,6 +82,15 @@ DarianCalendar::CalendarTypes::HENSEL
 DarianCalendar::CalendarTypes::AQUA
 ```
 
+## Supported Ruby Interpreters
+
+- MRI 1.9.3
+- MRI 2.0.0
+- MRI 2.1.0
+- JRuby
+- Rubinius
+
+
 ## Testing
 
 Unit tests are provided for all of Darian Calendar's methods:
