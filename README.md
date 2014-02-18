@@ -84,6 +84,7 @@ DarianCalendar::CalendarTypes::AQUA
 
 ## Supported Ruby Interpreters
 
+- MRI 1.9.2
 - MRI 1.9.3
 - MRI 2.0.0
 - MRI 2.1.0
