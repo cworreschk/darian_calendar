@@ -63,6 +63,15 @@ module DarianCalendar
       DarianCalendar::Date.today(type)
     end
 
+    def is_mars_leap_year?(year)
+      return false if year.nil?
+      return true if (year % 500) == 0
+      return false if (year % 100) == 0
+      return true if (year %  10) == 0
+      return false if (year % 2) == 0
+      return true
+    end
+
   end
 
 end
