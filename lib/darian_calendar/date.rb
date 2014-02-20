@@ -148,6 +148,11 @@ module DarianCalendar
       self.new(json['total_sols'].to_f, type)
     end
 
+    # Creates a date object by year, month or sol
+    # @param year [Integer] mars year
+    # @param month [Integer] mars month
+    # @param sol [Integer] sol
+    # @return [DarianCalendar::Date] mars date
     def self.by_digits(year=nil, month=1, sol=1)
       return self.today if year.nil?
 

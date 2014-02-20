@@ -63,6 +63,9 @@ module DarianCalendar
       DarianCalendar::Date.today(type)
     end
 
+    # Returns true if the given martian year is a leap year
+    # @param year [Integer] martian year
+    # @return [Boolean] true if the given year is a leap year
     def is_mars_leap_year?(year)
       return false if year.nil?
       return true if (year % 500) == 0
