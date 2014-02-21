@@ -148,18 +148,21 @@ module DarianCalendar
       self.new(json['total_sols'].to_f, type)
     end
 
-    # Creates a date object by year, month or sol
-    # @param year [Integer] mars year
-    # @param month [Integer] mars month
+    # Creates a date object by year, month and sol.
+    # If you pass the year with nothing else time will default to the first month 1 of that year.
+    # @param year [Integer] year
+    # @param month [Integer] month
     # @param sol [Integer] sol
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Date] mars date
-    def self.by_digits(year=nil, month=1, sol=1)
-      return self.today if year.nil?
-
+    def self.by_digits(year=nil, month=1, sol=1, type=DarianCalendar::CalendarTypes::MARTIANA)
+      if year.nil?
+        raise ArgumentError, 'Invalid year'
+      end
       if (month < 1) || (month >24)
         raise ArgumentError, 'Invalid month'
       end
-      if (day < 1) || (month > 28)
+      if (sol < 1) || (sol > 28)
         raise ArgumentError, 'Invalid sol'
       end
       if ((month % 6) == 0) && (sol == 28) && !((month == 24) && DarianCalendar::is_mars_leap_year?(year))
