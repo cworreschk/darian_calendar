@@ -84,6 +84,8 @@ DarianCalendar::CalendarTypes::AQUA
 
 ## Supported Ruby Interpreters
 
+This library aims to support and is [tested](https://travis-ci.org/marsec/darian_calendar) against the following Ruby interpreters and versions:
+
 - MRI 1.9.2
 - MRI 1.9.3
 - MRI 2.0.0
