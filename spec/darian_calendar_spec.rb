@@ -4,6 +4,12 @@ require 'spec_helper'
 
 describe DarianCalendar do
 
+  describe 'logical expections' do
+    it 'should compare if Date.today and Time.today are equal ' do
+      DarianCalendar::Date.today.should == DarianCalendar::Time.today
+    end
+  end
+
   describe 'class methods' do
 
     #def sols_from_earth(earth_date_time)

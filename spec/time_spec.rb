@@ -133,7 +133,7 @@ describe DarianCalendar::Time do
           date.sec.should   == 0
         end
       end
-      context 'all digits are given' do
+      context 'all date but no time digits are given' do
         it 'returns the date for the given digits and 00:00:00' do
           date = DarianCalendar::Time.by_digits(214, 14, 26)
           date.year.should  == 214
@@ -144,7 +144,7 @@ describe DarianCalendar::Time do
           date.sec.should   == 0
         end
       end
-      context 'all digits are given' do
+      context 'all date digits and hour are given' do
         it 'returns the date for the given digits and 20:00:00' do
           date = DarianCalendar::Time.by_digits(214, 14, 26, 20)
           date.year.should  == 214
@@ -155,7 +155,7 @@ describe DarianCalendar::Time do
           date.sec.should   == 0
         end
       end
-      context 'all digits are given' do
+      context 'all date digits, hour and minute are given' do
         it 'returns the date for the given digits and 20:10:00' do
           date = DarianCalendar::Time.by_digits(214, 14, 26, 20, 10)
           date.year.should  == 214

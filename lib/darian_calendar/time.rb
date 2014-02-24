@@ -66,6 +66,8 @@ module DarianCalendar
       date = DarianCalendar::Date.by_digits(year, month, sol)
       sols = date.total_sols.to_f
 
+      second+=1 if (second != 0)
+
       sols += (hour.to_f / 24.0)
       sols += (minute.to_f / 1440.0)
       sols += (second.to_f / 86400.0)
