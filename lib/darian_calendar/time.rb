@@ -32,7 +32,7 @@ module DarianCalendar
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] current mars date as time object
     def self.today(type=DarianCalendar::CalendarTypes::MARTIANA)
-      self.from_earth(::Date.today, type)
+      self.new(DarianCalendar::Date.today.total_sols)
     end
 
     # Returns the current mars time.
@@ -63,7 +63,7 @@ module DarianCalendar
         raise ArgumentError, 'Invalid second'
       end
 
-      date = self.superclass.by_digits(year, month, sol)
+      date = DarianCalendar::Date.by_digits(year, month, sol)
       sols = date.total_sols.to_f
 
       sols += (hour.to_f / 24.0)
@@ -97,7 +97,7 @@ module DarianCalendar
     # Returns the date of the given mars time
     # @return [DarianCalendar::Date] mars date
     def to_date
-      self.superclass.new(self.total_sols)
+      DarianCalendar::Date.by_digits(self.year, self.month, self.sol, self.calendar_type)
     end
 
     # Converts a number of martian sols to mars time.

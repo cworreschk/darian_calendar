@@ -19,10 +19,7 @@ describe DarianCalendar::Time do
       @mars_time.week_day.should == @mars_time.week_sol
     end
 
-  end
-
-  describe 'initialize method' do
-    it 'converts earth time to mars time' do
+    it 'verifies all attributes' do
       @mars_time.year.should  == 214
       @mars_time.month.should == 14
       @mars_time.sol.should   == 26
@@ -37,6 +34,7 @@ describe DarianCalendar::Time do
       @mars_time.sol_of_year.should     == 387
       @mars_time.week_sol.should        == 5
     end
+
   end
 
   describe 'class methods' do
@@ -55,8 +53,8 @@ describe DarianCalendar::Time do
 
     describe '.today' do
       it 'returns current mars date' do
-        ::Date.should_receive(:today).and_return(@earth_date)
-        DarianCalendar::Time.today.should == DarianCalendar::Date.from_earth(@earth_date)
+        ::Date.stub(:today).and_return(@earth_date)
+        DarianCalendar::Time.today.should == DarianCalendar::Date.by_digits(214, 14, 26)
       end
     end
 
