@@ -6,8 +6,8 @@ describe DarianCalendar::Date do
 
   before do
     @earth_date = ::Date.new(2012, 10, 15)
-    @mars_date  = DarianCalendar::Date.from_earth(@earth_date)
-    @mars_date_json = '{"calendar_type":"Martiana","month":14,"month_name":"Mithuna","month_of_season":1,"season":2,"sol":26,"sol_of_season":53,"sol_of_year":387,"total_sols":143466.15767923463,"week_sol":5,"week_sol_name":"Sol Jovis","year":214}'
+    @mars_date  = DarianCalendar::Date.by_digits(214, 14, 26)
+    @mars_date_json = '{"calendar_type":"Martiana","month":14,"month_name":"Mithuna","month_of_season":1,"season":2,"sol":26,"sol_of_season":53,"sol_of_year":387,"total_sols":143466,"week_sol":5,"week_sol_name":"Sol Jovis","year":214}'
   end
 
   describe 'attributes' do
@@ -17,24 +17,36 @@ describe DarianCalendar::Date do
       @mars_date.week_day.should == @mars_date.week_sol
     end
 
-  end
-
-  describe 'initialize method' do
-    it 'converts earth date to mars date' do
+    it 'verifies all attributes' do
       @mars_date.year.should  == 214
       @mars_date.month.should == 14
       @mars_date.sol.should   == 26
 
-      @mars_date.total_sols.should      == 143466.15767923463
+      @mars_date.total_sols.should      == 143466.0
       @mars_date.season.should          == 2
       @mars_date.sol_of_season.should   == 53
       @mars_date.month_of_season.should == 1
       @mars_date.sol_of_year.should     == 387
       @mars_date.week_sol.should        == 5
     end
+
   end
 
   describe 'class methods' do
+
+    describe '.new' do
+      context 'total sols are given' do
+        it 'returns mars date by count of martian sols' do
+          DarianCalendar::Date.new(@mars_date.total_sols).should == @mars_date
+        end
+      end
+      context 'no sols are given' do
+        it 'returns current mars date' do
+          ::Date.stub(:today).and_return(@earth_date)
+          DarianCalendar::Date.new.should == DarianCalendar::Date.today
+        end
+      end
+    end
 
     describe '.from_earth' do
       it 'converts an earth date to a mars date' do
@@ -50,7 +62,7 @@ describe DarianCalendar::Date do
 
     describe '.today' do
       it 'returns current mars date' do
-        ::Date.should_receive(:today).and_return(@earth_date)
+        ::Date.stub(:today).and_return(@earth_date)
         DarianCalendar::Date.today.should == DarianCalendar::Date.from_earth(@earth_date)
       end
     end
@@ -61,15 +73,63 @@ describe DarianCalendar::Date do
       end
     end
 
+    describe '.by_digits' do
+      context 'no digits are given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Date.by_digits}.to raise_error(ArgumentError, 'Invalid year')
+        end
+      end
+      context 'invalid month is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Date.by_digits(214, -5)}.to raise_error(ArgumentError, 'Invalid month')
+        end
+      end
+      context 'invalid sol is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Date.by_digits(214, 14, 35)}.to raise_error(ArgumentError, 'Invalid sol')
+        end
+      end
+      context 'invalid sol for a month is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Date.by_digits(214, 24, 28)}.to raise_error(ArgumentError, 'Invalid sol for this month')
+        end
+      end
+
+      context 'only year is given' do
+        it 'returns the first of the month 1 of the given year' do
+          date = DarianCalendar::Date.by_digits(214)
+          date.year.should  == 214
+          date.month.should == 1
+          date.sol.should   == 1
+        end
+      end
+      context 'only year and month are given' do
+        it 'returns the first of the given month and year' do
+          date = DarianCalendar::Date.by_digits(214, 14)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 1
+        end
+      end
+      context 'all digits are given' do
+        it 'returns the date for the given digits' do
+          date = DarianCalendar::Date.by_digits(214, 14, 26)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 26
+        end
+      end
+    end
+
   end
 
   describe 'instance methods' do
 
     describe '#<=>' do
       it 'compares mars date objects' do
-        same_date   = DarianCalendar::Date.from_earth(Date.new(2012, 10, 15))
-        past_date   = DarianCalendar::Date.from_earth(Date.new(2012, 10, 14))
-        future_date = DarianCalendar::Date.from_earth(Date.new(2012, 10, 16))
+        same_date   = DarianCalendar::Date.by_digits(214, 14, 26)
+        past_date   = DarianCalendar::Date.by_digits(214, 14, 25)
+        future_date = DarianCalendar::Date.by_digits(214, 14, 27)
 
         @mars_date.should == same_date
         @mars_date.should >  past_date
@@ -82,7 +142,7 @@ describe DarianCalendar::Date do
 
     describe '#sols_in_year' do
       it 'returns the number of sols in a martian year' do
-        leap_mars_date  = DarianCalendar::Date.from_earth(Date.new(2013, 10, 15))
+        leap_mars_date  = DarianCalendar::Date.by_digits(215)
         leap_mars_date.sols_in_year.should == 669
         @mars_date.sols_in_year.should     == 668
       end
@@ -90,7 +150,7 @@ describe DarianCalendar::Date do
 
     describe '#leap?' do
       it 'returns if year is a leap year' do
-        leap_mars_date  = DarianCalendar::Date.from_earth(Date.new(2013, 10, 15))
+        leap_mars_date  = DarianCalendar::Date.by_digits(215)
         leap_mars_date.leap?.should == true
         @mars_date.leap?.should     == false
       end

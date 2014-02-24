@@ -28,11 +28,51 @@ module DarianCalendar
       self.from_earth(::Time.parse(string), type)
     end
 
+    # Creates a date object denoting the present mars day.
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    # @return [DarianCalendar::Time] current mars date as time object
+    def self.today(type=DarianCalendar::CalendarTypes::MARTIANA)
+      self.new(DarianCalendar::Date.today.total_sols)
+    end
+
     # Returns the current mars time.
     # @param type [DarianCalendar::CalendarTypes] Calendar type
     # @return [DarianCalendar::Time] current mars time
     def self.now(type=DarianCalendar::CalendarTypes::MARTIANA)
       self.from_earth(::Time.now, type)
+    end
+
+    # Creates a date object by year, month, sol, hour, minute and second.
+    # If you pass the year with nothing else time will default to the first month 1 of that year at 00:00:00.
+    # @param year [Integer] year
+    # @param month [Integer] month
+    # @param month [Integer] sol
+    # @param month [Integer] hour
+    # @param month [Integer] minute
+    # @param sol [Integer] second
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    # @return [DarianCalendar::Time] mars time
+    def self.by_digits(year=nil, month=1, sol=1, hour=0, minute=0, second=0, type=DarianCalendar::CalendarTypes::MARTIANA)
+      if (hour < 0) || (hour > 24)
+        raise ArgumentError, 'Invalid hour'
+      end
+      if (minute < 0) || (minute > 60)
+        raise ArgumentError, 'Invalid minute'
+      end
+      if (second < 0) || (second > 60)
+        raise ArgumentError, 'Invalid second'
+      end
+
+      date = DarianCalendar::Date.by_digits(year, month, sol)
+      sols = date.total_sols.to_f
+
+      second+=1 if (second != 0)
+
+      sols += (hour.to_f / 24.0)
+      sols += (minute.to_f / 1440.0)
+      sols += (second.to_f / 86400.0)
+
+      return self.new(sols, type)
     end
 
     # Compares two times and returns -1, zero, 1 or nil. The other should be a mars time object.
@@ -59,7 +99,7 @@ module DarianCalendar
     # Returns the date of the given mars time
     # @return [DarianCalendar::Date] mars date
     def to_date
-      DarianCalendar::Date.new(self.total_sols)
+      DarianCalendar::Date.by_digits(self.year, self.month, self.sol, self.calendar_type)
     end
 
     # Converts a number of martian sols to mars time.

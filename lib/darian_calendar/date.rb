@@ -148,6 +148,31 @@ module DarianCalendar
       self.new(json['total_sols'].to_f, type)
     end
 
+    # Creates a date object by year, month and sol.
+    # If you pass the year with nothing else time will default to the first month 1 of that year.
+    # @param year [Integer] year
+    # @param month [Integer] month
+    # @param sol [Integer] sol
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    # @return [DarianCalendar::Date] mars date
+    def self.by_digits(year=nil, month=1, sol=1, type=DarianCalendar::CalendarTypes::MARTIANA)
+      if year.nil?
+        raise ArgumentError, 'Invalid year'
+      end
+      if (month < 1) || (month >24)
+        raise ArgumentError, 'Invalid month'
+      end
+      if (sol < 1) || (sol > 28)
+        raise ArgumentError, 'Invalid sol'
+      end
+      if ((month % 6) == 0) && (sol == 28) && !((month == 24) && DarianCalendar::is_mars_leap_year?(year))
+        raise ArgumentError, 'Invalid sol for this month'
+      end
+
+      sols = sol + ((month-1) * 28) - ((month-1)/6).floor + 668 * year + (year / 2).floor + ((year-1) / 10).floor - ((year-1) / 100).floor + ((year-1) / 1000).floor
+     return self.new(sols)
+    end
+
     # Compares two dates and returns -1, zero, 1 or nil. The other should be a mars date object.
     # @param another [DarianCalendar::Date]
     # @return [Integer] Compare result
@@ -164,11 +189,7 @@ module DarianCalendar
     # Returns true if the given year is a leap year
     # @return [Boolean] true if the given year is a leap year
     def leap?
-      return true if (@year % 500) == 0
-      return false if (@year % 100) == 0
-      return true if (@year %  10) == 0
-      return false if (@year % 2) == 0
-      return true
+      DarianCalendar::is_mars_leap_year?(@year)
     end
 
     # Converts the given mars date to earth date
@@ -208,7 +229,7 @@ module DarianCalendar
     # @return [DarianCalendar::Date] mars date
     def initialize(sols=nil, type=DarianCalendar::CalendarTypes::MARTIANA)
       total_sols = sols.to_f != 0 ? sols.to_f : DarianCalendar.sols_from_earth(::Date.today)
-      self.set_attributes(total_sols, type)
+      self.set_attributes(total_sols.floor, type)
     end
 
   end
