@@ -71,6 +71,114 @@ describe DarianCalendar::Time do
       end
     end
 
+    describe '.by_digits' do
+      context 'no digits are given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits}.to raise_error(ArgumentError, 'Invalid year')
+        end
+      end
+      context 'invalid month is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, -5)}.to raise_error(ArgumentError, 'Invalid month')
+        end
+      end
+      context 'invalid sol is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, 14, 35)}.to raise_error(ArgumentError, 'Invalid sol')
+        end
+      end
+      context 'invalid sol for a month is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, 24, 28)}.to raise_error(ArgumentError, 'Invalid sol for this month')
+        end
+      end
+
+      context 'invalid hour is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, 24, 28, 32)}.to raise_error(ArgumentError, 'Invalid hour')
+        end
+      end
+
+      context 'invalid minute is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, 24, 28, 20, 72)}.to raise_error(ArgumentError, 'Invalid minute')
+        end
+      end
+
+      context 'invalid second is given' do
+        it 'should raise an argument error' do
+          expect{DarianCalendar::Time.by_digits(214, 24, 28, 20, 10, -18)}.to raise_error(ArgumentError, 'Invalid second')
+        end
+      end
+
+      context 'only year is given' do
+        it 'returns the first of the month 1 of the given year and 00:00:00' do
+          date = DarianCalendar::Time.by_digits(214)
+          date.year.should  == 214
+          date.month.should == 1
+          date.sol.should   == 1
+          date.hour.should  == 0
+          date.min.should   == 0
+          date.sec.should   == 0
+        end
+      end
+      context 'only year and month are given' do
+        it 'returns the first of the given month and year and 00:00:00' do
+          date = DarianCalendar::Time.by_digits(214, 14)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 1
+          date.hour.should  == 0
+          date.min.should   == 0
+          date.sec.should   == 0
+        end
+      end
+      context 'all digits are given' do
+        it 'returns the date for the given digits and 00:00:00' do
+          date = DarianCalendar::Time.by_digits(214, 14, 26)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 26
+          date.hour.should  == 0
+          date.min.should   == 0
+          date.sec.should   == 0
+        end
+      end
+      context 'all digits are given' do
+        it 'returns the date for the given digits and 20:00:00' do
+          date = DarianCalendar::Time.by_digits(214, 14, 26, 20)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 26
+          date.hour.should  == 20
+          date.min.should   == 0
+          date.sec.should   == 0
+        end
+      end
+      context 'all digits are given' do
+        it 'returns the date for the given digits and 20:10:00' do
+          date = DarianCalendar::Time.by_digits(214, 14, 26, 20, 10)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 26
+          date.hour.should  == 20
+          date.min.should   == 10
+          date.sec.should   == 0
+        end
+      end
+      context 'all digits are given' do
+        it 'returns the date for the given digits and 20:10:02' do
+          date = DarianCalendar::Time.by_digits(214, 14, 26, 20, 10, 2)
+          date.year.should  == 214
+          date.month.should == 14
+          date.sol.should   == 26
+          date.hour.should  == 20
+          date.min.should   == 10
+          date.sec.should   == 2
+        end
+      end
+    end
+
   end
 
   describe 'instance methods' do
