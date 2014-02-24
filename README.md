@@ -31,23 +31,26 @@ Otherwise:
 require 'darian_calendar'
 ```
 
+### Date
 ```ruby
-mars_time = DarianCalendar.now
-mars_time = DarianCalendar.now(DarianCalendar::CalendarTypes::DEFROST)
-
-mars_time = DarianCalendar::Time.now
-mars_time = DarianCalendar::Time.now(DarianCalendar::CalendarTypes::AREOSYNCHRONOUS)
-
-mars_time = DarianCalendar::Time.from_earth(Time.utc(2012, 10, 15, 16, 50, 0))
-mars_time = DarianCalendar::Time.from_earth(Time.utc(2012, 10, 15, 16, 50, 0), DarianCalendar::CalendarTypes::AQUA)
-
-mars_time = DarianCalendar::Time.parse_earth('2012-10-15 16:50:00 UTC')
-mars_time = DarianCalendar::Time.parse_earth('2012-10-15 16:50:00 UTC', DarianCalendar::CalendarTypes::MARTIANA)
-
+mars_date = DarianCalendar.today
 mars_date = DarianCalendar::Date.today
 mars_date = DarianCalendar::Time.now.to_date
+mars_date = DarianCalendar::Date.by_digits(214, 14, 26)
+mars_date = DarianCalendar::Date.parse_earth('2012-10-15')
+mars_date = DarianCalendar::Date.from_earth(Date.new(2012, 10, 15))
 ```
 
+### Time
+```ruby
+mars_time = DarianCalendar.now
+mars_time = DarianCalendar::Time.now
+mars_time = DarianCalendar::Time.by_digits(214, 14, 26, 20, 12, 2)
+mars_time = DarianCalendar::Time.parse_earth('2012-10-15 16:50:00 UTC')
+mars_time = DarianCalendar::Time.from_earth(Time.utc(2012, 10, 15, 16, 50, 0))
+```
+
+### Attributes/Methods
 ```ruby
 mars_time.to_s #=> '214-14-26 20:10:02'
 
@@ -69,17 +72,27 @@ mars_time.month_name      #=> 'Sol Jovis'
 mars_time.week_sol_name   #=> 'Mithuna'
 ```
 
+### Convert back to earth time
 ```ruby
+mars_date = DarianCalendar::Date.by_digits(2012, 10, 15)
+mars_date.to_earth #=> 2012-10-15
+
 mars_time = DarianCalendar::Time.from_earth(Time.utc(2012, 10, 15, 16, 50, 0))
 mars_time.to_earth #=> 2012-10-15 16:50:00 UTC
 ```
 
+### Variants of the Darian Calendar System
 ```ruby
 DarianCalendar::CalendarTypes::MARTIANA #=> Default
 DarianCalendar::CalendarTypes::DEFROST
 DarianCalendar::CalendarTypes::AREOSYNCHRONOUS
 DarianCalendar::CalendarTypes::HENSEL
 DarianCalendar::CalendarTypes::AQUA
+```
+```ruby
+# How to use
+mars_date = DarianCalendar::Date.by_digits(214, 14, 26, DarianCalendar::CalendarTypes::AREOSYNCHRONOUS)
+mars_time = DarianCalendar.now(DarianCalendar::CalendarTypes::DEFROST)
 ```
 
 ## Supported Ruby Interpreters
@@ -92,7 +105,6 @@ This library aims to support and is [tested](https://travis-ci.org/marsec/darian
 - MRI 2.1.0
 - JRuby
 - Rubinius
-
 
 ## Testing
 
