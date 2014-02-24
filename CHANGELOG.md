@@ -1,5 +1,5 @@
 ## 1.1.0
-- Create Date and Time objects with by year, month, sol (hour, minute, second)
+- Create Date and Time objects by year, month, sol (hour, minute, second)
 
 ## 1.0
 - JSON support
