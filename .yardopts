@@ -1,6 +1,5 @@
 --title 'Darian Calendar'
 --readme README.md
---no-private
 --charset utf-8
 --markup=markdown
 'lib/**/*.rb' - '*.md'

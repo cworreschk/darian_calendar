@@ -36,13 +36,8 @@ module DarianCalendar
 
     protected
 
-    # Set all attributes by the number of martian sols and calendar type
-    # @param total_sols [Float] Total number of martian sols
-    # @param type [DarianCalendar::CalendarTypes] Calendar type
-    def set_attributes(total_sols, type)
-      @calendar_type = type.to_s.capitalize
-      @total_sols    = total_sols
-
+    # Set the attributes year and sol_of_year by the number of martian sols
+    def set_year_and_sol_of_year_by_total_sols
       sD  = (@total_sols / 334296).floor
       doD = (@total_sols - (sD * 334296)).floor
 
@@ -82,21 +77,21 @@ module DarianCalendar
       end
 
       @year = (500 * sD) + (100 * sC) + (10 * sX) + (2 * sII) + sI
+      @sol_of_year = doI
+    end
+
+    # Set the attribute season by the sol of the martian year
+    def set_season_by_sol_of_year
       @season = case true # 0-3
-        when (doI < 167) then 0
-        when (doI < 334) then 1
-        when (doI < 501) then 2
+        when (@sol_of_year < 167) then 0
+        when (@sol_of_year < 334) then 1
+        when (@sol_of_year < 501) then 2
         else 3
       end
+    end
 
-      @sol_of_season = doI - 167 * @season # 0-167
-      @month_of_season = (@sol_of_season / 28).floor #  0-5
-      @sol_of_year = doI
-
-      @month = @month_of_season + (6 * @season) + 1 # 1-24
-      @sol   = doI - (((@month - 1) * 28) - @season) + 1 # 1-28
-      @week_sol = ((@sol - 1) % 7) + 1 # 1-7
-
+    # Set the week sol name by week sol and type
+    def set_week_sol_name_by_week_sol_and_type(type)
       @week_sol_name = case type
         when DarianCalendar::CalendarTypes::MARTIANA, CalendarTypes::HENSEL then DarianCalendar::SOL_NAMES[:martiana][@week_sol-1]
         when DarianCalendar::CalendarTypes::DEFROST then DarianCalendar::SOL_NAMES[:defrost][@week_sol-1]
@@ -104,7 +99,10 @@ module DarianCalendar
         when DarianCalendar::CalendarTypes::AQUA then @week_sol.to_s
         else ''
       end
+    end
 
+    # Set the month name by month and type
+    def set_month_name_by_month_and_type(type)
       @month_name = case type
         when DarianCalendar::CalendarTypes::MARTIANA then DarianCalendar::MONTH_NAMES[:martiana][@month-1]
         when DarianCalendar::CalendarTypes::DEFROST, DarianCalendar::CalendarTypes::AREOSYNCHRONOUS then DarianCalendar::MONTH_NAMES[:defrost][@month-1]
@@ -112,6 +110,27 @@ module DarianCalendar
         when DarianCalendar::CalendarTypes::AQUA then @month.to_s
         else ''
       end
+    end
+
+    # Set all attributes by the number of martian sols and calendar type
+    # @param total_sols [Float] Total number of martian sols
+    # @param type [DarianCalendar::CalendarTypes] Calendar type
+    def set_attributes(total_sols, type)
+      @calendar_type = type.to_s.capitalize
+      @total_sols    = total_sols
+
+      self.set_year_and_sol_of_year_by_total_sols
+      self.set_season_by_sol_of_year
+
+      @sol_of_season = @sol_of_year - 167 * @season # 0-167
+      @month_of_season = (@sol_of_season / 28).floor #  0-5
+
+      @month = @month_of_season + (6 * @season) + 1 # 1-24
+      @sol   = @sol_of_year - (((@month - 1) * 28) - @season) + 1 # 1-28
+      @week_sol = ((@sol - 1) % 7) + 1 # 1-7
+
+      self.set_week_sol_name_by_week_sol_and_type(type)
+      self.set_month_name_by_month_and_type(type)
     end
 
     public
