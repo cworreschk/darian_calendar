@@ -1,0 +1,142 @@
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color:black;
+    margin-top : 10.0pt;
+    margin-bottom : 6.0pt;
+    background-color: #ffbb77
+}
+
+p {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color:black;
+    margin-top : 10.0pt;
+    margin-bottom : 6.0pt;
+}
+
+.tablecell {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color:black;
+    margin-top : 5.0pt;
+    margin-bottom : 5.0pt;
+    background-color: #ffbb77
+}
+
+.hide {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1pt;
+    color: #ffbb77;
+    margin-top : 1pt;
+    margin-bottom : 1pt;
+}
+
+.toc {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 7pt;
+    color: #black;
+    margin-top : 1pt;
+    margin-bottom : 1pt;
+}
+
+a:link {
+    color:#008844;
+    text-decoration: none
+}
+
+a:visited {
+    color:#ff0070;
+    text-decoration: none
+}
+
+a:active {
+    color:#44ff44;
+    text-decoration: none
+}
+
+a:hover {
+    color:#8080FF;
+    text-decoration: none
+}
+
+h1 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+    color:#d00000
+}
+
+h2 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #d00000
+}
+
+h3 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #d00000
+}
+
+h4 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-top : 12.0pt;
+    margin-bottom : 1.0pt;
+    color: #006080
+}
+
+h5 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1pt;
+    color: #ffbb77
+}
+
+.hq1 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #000080
+}
+
+.hq2 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #006000
+}
+
+hr {
+    color: #d00000;
+    font-size: 2pt;
+    height: 2px
+}
+
+.hrq1 {
+    color: #000080;
+    font-size: 4pt;
+    height: 4px
+}
+
+.hrq2 {
+    color: #006000;
+    font-size: 2pt;
+    height: 2px
+}
+
+th {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    color: black;
+}
+
+td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: black;
+}

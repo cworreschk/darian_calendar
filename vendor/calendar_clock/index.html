@@ -1,0 +1,292 @@
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>The Darian System</title>
+  <meta name="description" content="An integrated timekeeping system for Mars, the Galilean moons of Jupiter, and Titan">
+  <meta name="keywords" content="Darian Calendar, calendario dariano, calendrier darien, Darische kalender, Darianische kalender, Dariaanse kalender, Dariánský kalendár, Darijanski koledar, Äàðèàíñêèé êàëåíäàðü, Дарианский календарь, Δαριανό ημερολόγιο ダリアンカレンダー, Martian Calendar, Mars Calendar, Calendar for Mars, calendario marciano, calendarios marcianos, calendario marziano, calendari marziani, calendario en marte, calendrier martien, calendriers martiens, calendrier pour la planète Mars, Marskalender, Kalender für Mars, marsiaanse kalender, marsovský kalendář, kalendář pro Mars, Marsovski koledar, Ìàðñèàíñêèé êàëåíäàðü, Martian Clock, Martian Time, Mars Clock, Mars Time, Clock for Mars, Time on Mars, Jovian Calendar, Jovian Clock, Jovian Time, Jupiter Calendar, Jupiter Clock, Jupiter Time, Calendar for Jupiter, Clock for Jupiter, Time on Jupiter, Galilean Calendar, Galilean Clock, Galilean Time, Calendar for the Galileans, Clock for the Galileans, Time on the Galileans, Ionian Calendar, Ionian Clock, Ioian Time, Io Calendar, Io Clock, Io Time, Calendar for Io, Clock for Io, Time on Io, Europa Calendar, Europa Clock, Europa Time, Europan Calendar, Europan Clock, Europan Time, Calendar for Europa, Clock for Europa, Time on Europa, Ganymedean Calendar, Ganymedean Clock, Ganymedean Time, Ganymede Calendar, Ganymede Clock, Ganymede Time, Calendar for Ganymede, Clock for Ganymede, Time on Ganymede, Callistan Calendar, Callistan Clock, Callistan Time, Callisto Calendar, Callisto Clock, Callisto Time, Calendar for Callisto, Clock for Callisto, Time on Callisto, Saturnian Calendar, Saturnian Clock, Saturnian Time, Saturn Calendar, Saturn Clock, Saturn Time, Calendar for Saturn, Clock for Saturn, Time on Saturn, Titanian Calendar, Titanian Clock, Titanian Time, Titan Calendar, Titan Clock, Titan Time, Calendar for Titan, Clock for Titan, Time on Titan, reloj marciano, tiempo marciano, reloj en marte, tiempo en marte, orologio marziano, tempo marziano, horloge martienne, temps martien, horloge pour la planète Mars, temps sur la planète Mars, Marstaktgeber, Marszeit, Taktgeber für Mars, Zeit auf Mars, Ìàðñèàíñêèé êàëåíäàðü, Ìàðñèàíñêèå ÷àñû, Ìàðñèàíñêîå âðåìÿ, Êàëåíäàðü äëà Ìàðñà, ×àñû äëà Ìàðñà, Âðåìÿ íà Ìàðñå, Марсианский календарь, Марсианские часы, Марсианское время, Календарь дла Марса, Часы дла Марса, Время на Марсе, Αριανό ημερολόγιο, 火星のカレンダー">
+  <meta name="Author" content="Thomas Gangale">
+  <link rel="StyleSheet" href="stylesheets/mars.css">
+  <link rel="StyleSheet" href="stylesheets/form.css">
+  <script language="JavaScript" src="javascripts/m2e-us.js"></script>
+</head>
+<body onload="insertNow()">
+
+<script type="text/javascript" src="javascripts/graph-calc.js"></script>
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+
+<table width="100%">
+<tbody><tr valign="top">
+
+<table width="100%">
+  <tbody><tr>
+    <td align="center">
+      <h1>THE DARIAN SYSTEM</h1>
+      <h3>Copyright <font face="Arial">©</font> 1986-2005 by <a href="https://web.archive.org/web/20131009155631/http://www.ops-alaska.com/cv_frm_teg.htm" target="new">Thomas Gangale</a></h3>
+      <h2>DARIAN DATE CONVERTER</h2>
+    </td>
+  </tr>
+  </tbody></table>
+
+<center>
+
+<table width="450">
+  <tbody><tr>
+    <td colspan="2">
+      <p>Click on any month name to view a calendar for that month, or click inside the diagram to view the calendar for the full Martian year.
+      </p></td>
+  </tr>
+  </tbody></table>
+
+<form name="calc">
+<input type="hidden" name="InSolNomen" value="1">
+<input type="hidden" name="InOrbitPlot" value="1">
+
+<img src="images/month2a.gif" width="450" height="400" usemap="#Months" border="0"><map name="Months">
+  <area shape="rect" coords="193,2,279,23" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/sag1.htm" alt="Sagittarius">
+  <area shape="rect" coords="132,13,194,30" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/dha1.htm" alt="Dhanus">
+  <area shape="rect" coords="56,29,154,49" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/cap1.htm" alt="Capricornus">
+  <area shape="rect" coords="57,54,119,71" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/mak1.htm" alt="Makara">
+  <area shape="rect" coords="17,86,92,106" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/aqu1.htm" alt="Aquarius">
+  <area shape="rect" coords="3,128,69,145" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/kum1.htm" alt="Kumbha">
+  <area shape="rect" coords="8,166,61,184" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/pis1.htm" alt="Pisces">
+  <area shape="rect" coords="18,206,60,223" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/min1.htm" alt="Mina">
+  <area shape="rect" coords="20,252,67,269" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/ari1.htm" alt="Aries">
+  <area shape="rect" coords="32,296,86,313" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/mes1.htm" alt="Mesha">
+  <area shape="rect" coords="59,336,118,353" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/tau1.htm" alt="Taurus">
+  <area shape="rect" coords="86,361,160,379" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/ris1.htm" alt="Rishabha">
+  <area shape="rect" coords="152,378,211,396" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/gem1.htm" alt="Gemini">
+  <area shape="rect" coords="221,382,286,399" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/mit1.htm" alt="Mithuna">
+  <area shape="rect" coords="291,369,348,387" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/can1.htm" alt="Cancer">
+  <area shape="rect" coords="326,349,374,366" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/kar1.htm" alt="Karka">
+  <area shape="rect" coords="360,313,391,330" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/leo1.htm" alt="Leo">
+  <area shape="rect" coords="386,271,439,288" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/sim1.htm" alt="Simha">
+  <area shape="rect" coords="398,211,446,231" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/vir1.htm" alt="Virgo">
+  <area shape="rect" coords="398,155,446,175" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/kan1.htm" alt="Kanya">
+  <area shape="rect" coords="385,111,425,129" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/lib1.htm" alt="Libra">
+  <area shape="rect" coords="357,68,395,86" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/tul1.htm" alt="Tula">
+  <area shape="rect" coords="329,39,404,60" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/sco1.htm" alt="Scorpius">
+  <area shape="rect" coords="283,18,351,35" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/months/vri1.htm" alt="Vrishika">
+  <area shape="circle" coords="229,203,171" href="https://web.archive.org/web/20131009155631/http://pweb.jps.net/~gangale4/tables/t1986.htm" alt="Full Mars Year"></map>
+
+<div id="c0" style="position:relative;left:0;top:0; z-index:2;">
+<div id="ob1" style="position: relative; left: 59.934623942516px; top: -102.56029937711px; z-index: 8;">
+  <img src="images/earticon_s.gif" width="30" height="30" border="0" alt="Earth"></div>
+<div id="ob2" style="position: relative; left: -38.5140300661929px; top: -68.9033020323103px; z-index: 8;">
+  <img src="images/marsicon_s.gif" width="20" height="20" border="0" alt="Mars"></div>
+<div style="position:relative;left:0;top:-30; z-index:2;">
+
+<!--table level 1-->
+<table border="1" cellspacing="0" cellpadding="0" bgcolor="#000000">
+  <tbody><tr>
+    <th class="clock" bgcolor="#000000" colspan="3" align="center">
+      <font color="red">Darian Date Calculator</font>
+    </th>
+  </tr>
+  <tr>
+    <td class="clock" background="images/bg_Earth.jpg">
+
+      <!--table level 2-->
+      <table border="1" frame="void" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+          <th class="clock" colspan="3" align="center" height="25">
+            Gregorian Date
+          </th>
+        </tr>
+        <tr>
+          <td class="clock" align="center" height="25">Year</td>
+          <td class="clock" align="center">Month</td>
+          <td class="clock" align="center">Day</td>
+        </tr>
+        <tr>
+          <td align="center">
+            <input class="EarthYearField" type="text" name="eYear" value="" size="4">
+          </td>
+          <td align="center">
+            <select class="EarthMonthField" name="eMonth">
+              <option selected=""></option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </td>
+          <td align="center">
+            <input class="EarthDayField" type="text" name="eDay" value="" size="2">
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            Time <input class="EarthTimeFields" type="text" name="eHour" value="" size="2"> :
+            <input class="EarthTimeFields" type="text" name="eMin" value="" size="2"> :
+            <input class="EarthTimeFields" type="text" name="eSec" value="" size="2">
+            <select class="EarthTimeZoneField" name="eTZ">
+              <option value="0" selected="">UTC</option>
+              <option>Local</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            <input class="DayWeekField" readonly="" type="text" name="eDayName" value="" size="10">&nbsp;&nbsp;&nbsp;Day of the Year <input class="DayYearField" readonly="" type="text" name="eNumDay" value="" size="3">
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            Julian Day <input class="JulianEarthField" readonly="" type="text" name="eJulianDay" value="" size="12">
+          </td>
+        </tr>
+        </tbody></table>
+      <!--table level 2-->
+
+    </td>
+    <td class="clock">
+
+      <!--table level 2-->
+      <table border="1" frame="void" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+          <td width="132" height="50" bgcolor="#000000" align="center"><a href="https://web.archive.org/web/20131009155631/http://www.martiana.org/"><img src="images/martiana.gif" width="130" height="44" alt="martiana.org" border="0"></a></td>
+        </tr>
+        <tr>
+          <td bgcolor="#000000" height="90" align="center">
+            <input type="button" value="Convert --&gt;" onclick="convEarthToMars()">
+            <br>
+            <input type="button" value="&lt;-- Convert" onclick="convMarsToEarth()">
+          </td>
+        </tr></tbody></table>
+      <!--table level 2-->
+
+    </td>
+    <td class="clock" background="images/bg_Mars.jpg">
+
+      <!--table level 2-->
+      <table border="1" frame="void" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+          <th class="clock" colspan="3" align="center" height="25">
+            Darian Date
+          </th>
+        </tr>
+        <tr>
+          <td class="clock" align="center" height="25">mYear</td>
+          <td class="clock" align="center">mMonth</td>
+          <td class="clock" align="center">Sol</td>
+        </tr>
+        <tr>
+          <td align="center">
+            <input class="MarsYearField" type="text" name="mYear" value="" size="4">
+          </td>
+          <td align="center">
+            <select class="MarsMonthField" name="mMonth">
+              <option selected=""></option>
+              <option value="1">Sagittarius</option>
+              <option value="2">Dhanus</option>
+              <option value="3">Capricornus</option>
+              <option value="4">Makara</option>
+              <option value="5">Aquarius</option>
+              <option value="6">Kumbha</option>
+              <option value="7">Pisces</option>
+              <option value="8">Mina</option>
+              <option value="9">Aries</option>
+              <option value="10">Mesha</option>
+              <option value="11">Taurus</option>
+              <option value="12">Rishabha</option>
+              <option value="13">Gemini</option>
+              <option value="14">Mithuna</option>
+              <option value="15">Cancer</option>
+              <option value="16">Karka</option>
+              <option value="17">Leo</option>
+              <option value="18">Simha</option>
+              <option value="19">Virgo</option>
+              <option value="20">Kanya</option>
+              <option value="21">Libra</option>
+              <option value="22">Tula</option>
+              <option value="23">Scorpius</option>
+              <option value="24">Vrishika</option>
+            </select>
+          </td>
+          <td align="center">
+            <input class="MarsSolField" type="text" name="mDay" value="" size="2">
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            Time <input class="MarsTimeFields" type="text" name="mHour" value="" size="2"> :
+            <input class="MarsTimeFields" type="text" name="mMin" value="" size="2"> :
+            <input class="MarsTimeFields" type="text" name="mSec" value="" size="2">
+            <select class="MarsTimeZoneField" name="mTZ">
+              <option value="0" selected="">Airy</option>
+              <option value="90.50">Beagle 2</option>
+              <option value="58.00">Mars 2</option>
+              <option value="-158.00">Mars 3</option>
+              <option value="-019.42">Mars 6</option>
+              <option value="5.94">Opportunity</option>
+              <option value="-165.00">Polar Lander</option>
+              <option value="-33.35">Pathfinder</option>
+              <option value="175.48">Spirit</option>
+              <option value="-047.95">Viking 1</option>
+              <option value="134.28">Viking 2</option>
+              <!--option value=""></option-->
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            <input class="SolWeekField" readonly="" type="text" name="mSolName" value="" size="10">&nbsp;&nbsp;&nbsp;Sol of the mYear <input class="SolYearField" readonly="" type="text" name="mNumDay" value="" size="3">
+          </td>
+        </tr>
+        <tr>
+          <td class="clock" colspan="3" align="center">
+            Julian Sol <input readonly="" class="JulianMarsField" type="text" name="mJulianDay" value="" size="12">
+          </td>
+        </tr>
+        </tbody></table>
+      <!--table level 2-->
+
+    </td>
+  </tr>
+  <tr>
+
+    <td bgcolor="#000000" colspan="3" align="center">
+
+      <table cellspacing="0" cellpadding="3" align="center" border="0">
+        <tbody><tr>
+          <td class="clock">
+            <textarea readonly="" class="EarthThisDayField" name="DispThisDay" value=""></textarea>
+            <textarea readonly="" class="MarsThisSolField" name="DispThisSol" value=""></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="clock">
+            <center>
+              <font color="red">developed by Alan Hensel and Thomas Gangale</font>
+            </center>
+          </td>
+        </tr>
+        </tbody></table>
+
+    </td>
+
+  </tr>
+  </tbody></table>
+
+<p style="text-align: justify; margin-top:40px;">
+  The first accurate Martian calendar, complete with weeks, months, and a starting point of the calendar year, was developed in 1936 by Robert G. Aitken, director emeritus of the Lick Observatory in California. Michael Allison's Martian calendar includes a month named for Darius Gangale. Igor Arih's Martian calendar, Frank N. Bauregger's Martian calendar, William H. Becker's Martian calendar, Geoffrey Briggs and Howard Houben's Martian calendar, Leonard Bromberg's Martian calendar. Edgar Rice Burroughs' description of a Martian calendar in several of his novels were inaccurate and mutually inconsistent. Thomas W. Cronin's Martian calendar, Alan Dechert's Martian calendar, Nachum Dershowitz and Edward M. Reingold's Martian calendar, François Forget's Martian calendar, Robert L. Forward's Martian calendar, M. Vertregt's Martian calendar. The earliest known Martian calendar was described in Percy Greg's 1880 utopian novel, <i>Across the Zodiac.</i>  Another early Martian calendar was the joint invention of A. E. Douglass and W. H. Pickering, original members of the staff at Lowell Observatory in Arizona. The Darian system includes a Martian calendar as well as calendars for the Galileans and Titan. Tom Gangale's Martian calendar has been widely imitated. Kim Stanley Robinson's Martian calendar is similar in design. James M. Graham and Kandis Elliot's Martian calendar, Pierre Hallet's Martian calendar, William K. Hartmann's Martian calendar, Robert A. Heinlein's Martian calendar, Leon G. Heron's Martian calendar, Fred Hightower's Martian calendar, Bill Hollon's Martian calendar, Mark Knoke's Martian calendar, Peter Kokh's Martian calendar, Ryan Kramer's Martian calendar, Mike Kretsch's  Martian calendar, Manfred Krutein's Martian calendar, Roger E. Kuiper's Martian calendar, Lance Latham's Martian calendar. The first operational Martian clock was designed in 1954 by I. M. Levitt of the Fels Observatory in Philadelphia; it displayed the time and date on Earth, as well as the time on Mars and the date on Mars as defined by a Martian calendar of his own invention. James Lovelock's Martian calendar contains 687 days! The Mars Time Group's Martian calendar, Patrick Moore's Martian calendar, Shawn Moore's Martian calendar, Shaun Moss' Martian calendar, Linda Naughton and Robert O'Meara's Martian calendar, Jelmer Oosthoek's Martian calendar, Terry Phelan's Martian calendar, H. Beam Piper's Martian calendar, Olivier Prud'homme's Martian calendar, Keith Salvas' Martian calendar, John J. G. Savard's Martian calendar, Mickey D. Schmidt's Martian calendar, Hans-Joachim Schneider's Martian calendar, Miguel Angel Serra Martín's Martian calendar, Anton Sherwood's Martian calendar, Anders Ström's Martian calendar, Josef Šurán's Martian calendar, Richard Weidner's Martian calendar, Rachel Ann Welton's Martian calendar, William Woods' Martian calendar. Robert Zubrin's Martian calendar is badly flawed in both concepts and details.
+</p>
+
+</div>
+</div></form></center>
+
+</td>
+</tr>
+</tbody></table>
+
+
+</body></html>

@@ -1,0 +1,85 @@
+TH.clock {
+    FONT-SIZE: 16px; COLOR: white; FONT-FAMILY: Verdana,Helvetica,sans-serif
+}
+TD.clock {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: white; FONT-FAMILY: Verdana,Helvetica,sans-serif
+}
+.MarsFields {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 140px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.MarsYearField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 40px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.MarsMonthField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 105px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.MarsSolField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 25px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.MarsTimeFields {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 25px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.MarsSolWeekField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 106px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.MarsTimeZoneField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 110px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.MarsClockTypeField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 140px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.JulianMarsField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 100px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.SolWeekField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 85px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.SolYearField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 30px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.MarsThisSolField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 306px; HEIGHT: 100px; COLOR: #ffbb77; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+
+
+.EarthFields {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 140px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.EarthYearField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 40px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.EarthMonthField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 105px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.EarthDayField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 25px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.EarthTimeFields {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 25px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.EarthDayWeekField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 106px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.EarthTimeZoneField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 100px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: darkgreen
+}
+.JulianEarthField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 110px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.DayWeekField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 85px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.DayYearField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 30px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+.EarthThisDayField {
+    FONT-WEIGHT: bold; FONT-SIZE: 11px; WIDTH: 306px; HEIGHT: 100px; COLOR: #88ccff; FONT-FAMILY: Verdana,Helvetica,sans-serif; BACKGROUND-COLOR: black
+}
+
+
+A.clock {
+    COLOR: white
+}
+A.clock:hover {
+    COLOR: navy; BACKGROUND-COLOR: white
+}
