@@ -1,8 +1,9 @@
 # Darian Calendar
 
-[![Gem Version](https://badge.fury.io/rb/darian_calendar.png)](http://badge.fury.io/rb/darian_calendar) 
-[![Build Status](https://travis-ci.org/marsec/darian_calendar.png)](https://travis-ci.org/marsec/darian_calendar)
-[![Coverage Status](https://coveralls.io/repos/marsec/darian_calendar/badge.png?branch=master)](https://coveralls.io/r/marsec/darian_calendar)
+[![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)
+[![Build Status](http://img.shields.io/travis/marsec/darian_calendar.svg?style=flat-square)](https://travis-ci.org/marsec/darian_calendar)
+[![Coverage Status](http://img.shields.io/coveralls/marsec/darian_calendar.svg?style=flat-square)](https://coveralls.io/r/marsec/darian_calendar)
+[![License](https://img.shields.io/badge/license-EUPL--1.1-red.svg?style=flat-square)](https://github.com/marsec/darian_calendar/blob/master/LICENSE.md)
 
 _The [Darian calendar] is a proposed system of time-keeping designed to serve the needs of any possible future human settlers on the planet Mars.
 It was created by aerospace engineer and political scientist Thomas Gangale in 1985 and named by him after his son Darius._ ([Wikipedia])
