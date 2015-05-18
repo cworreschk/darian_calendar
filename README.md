@@ -1,9 +1,9 @@
 # Darian Calendar
 
-[![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)
-[![Build Status](http://img.shields.io/travis/marsec/darian_calendar.svg?style=flat-square)](https://travis-ci.org/marsec/darian_calendar)
-[![Coverage Status](http://img.shields.io/coveralls/marsec/darian_calendar.svg?style=flat-square)](https://coveralls.io/r/marsec/darian_calendar)
-[![License](https://img.shields.io/badge/license-EUPL--1.1-red.svg?style=flat-square)](https://github.com/marsec/darian_calendar/blob/master/LICENSE.md)
+[![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)ma
+[![Build Status](http://img.shields.io/travis/cworreschk/darian_calendar.svg?style=flat-square)](https://travis-ci.org/cworreschk/darian_calendar)
+[![Coverage Status](http://img.shields.io/coveralls/cworreschk/darian_calendar.svg?style=flat-square)](https://coveralls.io/r/cworreschk/darian_calendar)
+[![License](https://img.shields.io/badge/license-EUPL--1.1-red.svg?style=flat-square)](https://github.com/cworreschk/darian_calendar/blob/master/LICENSE.md)
 
 _The [Darian calendar] is a proposed system of time-keeping designed to serve the needs of any possible future human settlers on the planet Mars.
 It was created by aerospace engineer and political scientist Thomas Gangale in 1985 and named by him after his son Darius._ ([Wikipedia])
@@ -100,7 +100,7 @@ mars_time = DarianCalendar.now(DarianCalendar::CalendarTypes::DEFROST)
 
 ## Supported Ruby Interpreters
 
-This library aims to support and is [tested](https://travis-ci.org/marsec/darian_calendar) against the following Ruby interpreters and versions:
+This library aims to support and is [tested](https://travis-ci.org/cworreschk/darian_calendar) against the following Ruby interpreters and versions:
 
 - MRI 1.9.2
 - MRI 1.9.3
@@ -119,7 +119,7 @@ bundle exec rspec
 ```
 
 ## Copyright
-- _The Darian Calendar Ruby Gem_ is Copyright © 2014 by Christian Worreschk, MarSec.
+- _The Darian Calendar Ruby Gem_ is Copyright © 2014 by Christian Worreschk.
 - _The Darian System_ is Copyright © 1986-2005 by Thomas Gangale
 
 ## License
