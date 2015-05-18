@@ -12,8 +12,8 @@ Gem::Specification.new do |gem|
   gem.description = 'This Ruby library converts earth time to mars time and back again. You can choose between 5 variants of the Darian calendar system; Martiana, Defrost, Areosynchronous, Hensel and Aqua.'
 
   gem.authors  = ['Christian Worreschk']
-  gem.email    = ['info@marsec.de']
-  gem.homepage = 'http://github.com/marsec/darian_calendar'
+  gem.email    = ['info@worreschk.eu']
+  gem.homepage = 'http://github.com/cworreschk/darian_calendar'
   gem.licenses  = ['EUPL-1.1']
 
   gem.require_paths    = ['lib']
