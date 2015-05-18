@@ -1,6 +1,6 @@
 # Darian Calendar
 
-[![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)ma
+[![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)
 [![Build Status](http://img.shields.io/travis/cworreschk/darian_calendar.svg?style=flat-square)](https://travis-ci.org/cworreschk/darian_calendar)
 [![Coverage Status](http://img.shields.io/coveralls/cworreschk/darian_calendar.svg?style=flat-square)](https://coveralls.io/r/cworreschk/darian_calendar)
 [![License](https://img.shields.io/badge/license-EUPL--1.1-red.svg?style=flat-square)](https://github.com/cworreschk/darian_calendar/blob/master/LICENSE.md)
