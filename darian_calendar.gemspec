@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.authors  = ['Christian Worreschk']
   gem.email    = ['info@worreschk.eu']
   gem.homepage = 'http://github.com/cworreschk/darian_calendar'
-  gem.licenses  = ['EUPL-1.1']
+  gem.licenses  = ['MIT']
 
   gem.require_paths    = ['lib']
   gem.files            = `git ls-files`.split("\n")
