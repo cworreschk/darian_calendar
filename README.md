@@ -3,7 +3,7 @@
 [![Gem Version](https://img.shields.io/gem/v/uikit-sass-rails.svg?style=flat-square)](https://rubygems.org/gems/darian_calendar)
 [![Build Status](http://img.shields.io/travis/cworreschk/darian_calendar.svg?style=flat-square)](https://travis-ci.org/cworreschk/darian_calendar)
 [![Coverage Status](http://img.shields.io/coveralls/cworreschk/darian_calendar.svg?style=flat-square)](https://coveralls.io/r/cworreschk/darian_calendar)
-[![License](https://img.shields.io/badge/license-EUPL--1.1-red.svg?style=flat-square)](https://github.com/cworreschk/darian_calendar/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://github.com/cworreschk/darian_calendar/blob/master/LICENSE.md)
 
 _The [Darian calendar] is a proposed system of time-keeping designed to serve the needs of any possible future human settlers on the planet Mars.
 It was created by aerospace engineer and political scientist Thomas Gangale in 1985 and named by him after his son Darius._ ([Wikipedia])
@@ -123,4 +123,4 @@ bundle exec rspec
 - _The Darian System_ is Copyright © 1986-2005 by Thomas Gangale
 
 ## License
-This Darian Calendar Ruby Gem is released under the [European Union Public Licence V. 1.1](http://opensource.org/licenses/EUPL-1.1).
+This Darian Calendar Ruby Gem is released under the [MIT Licence](http://opensource.org/licenses/MIT).
